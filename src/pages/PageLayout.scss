@@ -13,7 +13,7 @@
       align-items: center;
     }
     .homepage_header_wrapper {
-      width: 3%;
+      width: 17%;
       margin-right: 8px;
 
       .homepage_header_wrapper_inner {
@@ -33,6 +33,8 @@
     }
     @media only screen and (max-width: 540px) {
       .homepage_header_inner {
+        display: flex;
+        flex-direction: column;
         margin: 18px 16px;
       }
       p {
@@ -41,7 +43,9 @@
         line-height: 24px;
       }
       .homepage_header_wrapper {
-        width: 10%;
+        align-items: center;
+        justify-content: center;
+        width: 70%;
         margin-right: 8px;
       }
     }

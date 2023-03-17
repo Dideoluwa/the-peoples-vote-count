@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.png";
 import twitter from "../assets/twitter.png";
 import ig from "../assets/ig.png";
 import lp from "../assets/lp.png";
@@ -37,9 +37,8 @@ import "./PageLayout.scss";
 const PageLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [people, setPeople] = useState([]);
-
   const lgaChangeHandler = () => {
-    setIsOpen(null);
+    setIsOpen(people);
   };
 
   const [timeLeft, setTimeLeft] = useState(null);
@@ -95,7 +94,7 @@ const PageLayout = () => {
   return (
     <div>
       {!isOpen && (
-        <div className="homepage" onClick={lgaChangeHandler} value={people}>
+        <div className="homepage" onChange={lgaChangeHandler}>
           <div className="homepage_header">
             <div className="homepage_header_inner">
               <div className="homepage_header_wrapper">
@@ -103,7 +102,6 @@ const PageLayout = () => {
                   <img src={logo} alt="logo" />
                 </div>
               </div>
-              <p>The People's Count</p>
             </div>
           </div>
           <div className="homepage_body">
@@ -309,7 +307,7 @@ const PageLayout = () => {
                 </div>
                 <div className="body_inner_chart">
                   <div
-                    style={{ backgroundColor: "#EFEFEF", width: "6%" }}
+                    style={{ backgroundColor: "#EFEFEF", width: "3%" }}
                     className="body_inner_chart_guage"
                   ></div>
                   <div className="body_inner_chart_guage_text">
