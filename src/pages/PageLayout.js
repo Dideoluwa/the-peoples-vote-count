@@ -52,34 +52,34 @@ const reports = [
   },
 ];
 
-const pollinUnits = [
-  { polling_unit: "Ward A, Polling Unit 001", ward: "Ward A", lga: "Alimosho" },
-  { polling_unit: "Ward B, Polling Unit 004", ward: "Ward B", lga: "Ikeja" },
-  { polling_unit: "Ward C, Polling Unit 002", ward: "Ward C", lga: "Kosofe" },
-  {
-    polling_unit: "Ward D, Polling Unit 003",
-    ward: "Ward D",
-    lga: "Lagos Mainland",
-  },
-  { polling_unit: "Ward E, Polling Unit 002", ward: "Ward E", lga: "Agege" },
-  {
-    polling_unit: "Ward F, Polling Unit 001",
-    ward: "Ward F",
-    lga: "Oshodi-Isolo",
-  },
-  { polling_unit: "Ward G, Polling Unit 001", ward: "Ward G", lga: "Eti-Osa" },
-  { polling_unit: "Ward H, Polling Unit 002", ward: "Ward H", lga: "Surulere" },
-  {
-    polling_unit: "Ward I, Polling Unit 003",
-    ward: "Ward I",
-    lga: "Ifako-Ijaiye",
-  },
-  {
-    polling_unit: "Ward J, Polling Unit 004",
-    ward: "Ward J",
-    lga: "Lagos Island",
-  },
-];
+// const pollinUnits = [
+//   { polling_unit: "Ward A, Polling Unit 001", ward: "Ward A", lga: "Alimosho" },
+//   { polling_unit: "Ward B, Polling Unit 004", ward: "Ward B", lga: "Ikeja" },
+//   { polling_unit: "Ward C, Polling Unit 002", ward: "Ward C", lga: "Kosofe" },
+//   {
+//     polling_unit: "Ward D, Polling Unit 003",
+//     ward: "Ward D",
+//     lga: "Lagos Mainland",
+//   },
+//   { polling_unit: "Ward E, Polling Unit 002", ward: "Ward E", lga: "Agege" },
+//   {
+//     polling_unit: "Ward F, Polling Unit 001",
+//     ward: "Ward F",
+//     lga: "Oshodi-Isolo",
+//   },
+//   { polling_unit: "Ward G, Polling Unit 001", ward: "Ward G", lga: "Eti-Osa" },
+//   { polling_unit: "Ward H, Polling Unit 002", ward: "Ward H", lga: "Surulere" },
+//   {
+//     polling_unit: "Ward I, Polling Unit 003",
+//     ward: "Ward I",
+//     lga: "Ifako-Ijaiye",
+//   },
+//   {
+//     polling_unit: "Ward J, Polling Unit 004",
+//     ward: "Ward J",
+//     lga: "Lagos Island",
+//   },
+// ];
 
 const lagosLGAs = [
   "Select a LGA",
@@ -110,7 +110,9 @@ const PageLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [people, setPeople] = useState([]);
 
-  const lgaChangeHandler = () => {};
+  const lgaChangeHandler = () => {
+    setIsOpen(null);
+  };
 
   const [timeLeft, setTimeLeft] = useState(null);
 
