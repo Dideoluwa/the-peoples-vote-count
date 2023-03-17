@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'General sans';
+  font-family: 'General sans light';
   src: url('./utils/FontshareKit-2303001367/General Sans/Fonts/WEB/fonts/GeneralSans-Medium.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'General sans light';
-  src: url('./utils/FontshareKit-2303001367/General Sans/Fonts/WEB/fonts/GeneralSans-Light.ttf') format('truetype');
+  font-family: 'General sans';
+  src: url('./utils/FontshareKit-2303001367/General Sans/Fonts/WEB/fonts/GeneralSans-Regular.ttf') format('truetype');
 }
 
 * {

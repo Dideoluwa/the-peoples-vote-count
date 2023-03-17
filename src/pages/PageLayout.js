@@ -3,6 +3,8 @@ import apcImg from "../assets/apc.png";
 import pdpImg from "../assets/pdp.png";
 import logo from "../assets/logo.png";
 import lpImg from "../assets/lp.png";
+import twitter from "../assets/twitter.png";
+import ig from "../assets/ig.png";
 import axios from "axios";
 import electionImg from "../assets/election.png";
 import "./PageLayout.scss";
@@ -126,25 +128,29 @@ const PageLayout = () => {
 
     const difference = tomorrow8AM.getTime() - now.getTime();
 
-    const hours = Math.floor(difference / (1000 * 60 * 60));
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((difference / (1000 * 60)) % 60);
-    const seconds = Math.floor((difference / 1000) % 60);
 
-    setTimeLeft({ hours, minutes, seconds });
+    setTimeLeft({ days, hours, minutes });
 
     const intervalId = setInterval(() => {
       const now = new Date();
       const difference = tomorrow8AM.getTime() - now.getTime();
 
-      const hours = Math.floor(difference / (1000 * 60 * 60));
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((difference / (1000 * 60)) % 60);
-      const seconds = Math.floor((difference / 1000) % 60);
 
-      setTimeLeft({ hours, minutes, seconds });
+      setTimeLeft({ days, hours, minutes });
     }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
+
+  function formatNumber(num) {
+    return num?.toString().padStart(2, "0");
+  }
 
   useEffect(() => {
     axios
@@ -179,41 +185,119 @@ const PageLayout = () => {
             </div>
           </div>
           <div className="homepage_body">
-            <div>
+            <div className="homepage_body_inner">
               <h1>
                 Every vote <span>counts</span>
               </h1>
               <p>
-                A decentralized, non-partisan effort to count every vote and
-                report every incident in the Lagos State gubernatorial election.{" "}
+                The People’s Count is a decentralized, non-partisan effort to
+                count every vote and report every incident in the Lagos State
+                gubernatorial election.
               </p>
               <div className="timer">
+                <a href="https://wa.me/message/U76ZSMNPTCORK1">
+                  <svg
+                    width="25"
+                    height="24"
+                    viewBox="0 0 25 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M22.48 11.41C22.14 5.60995 16.87 1.13996 10.8 2.13996C6.62004 2.82996 3.27005 6.21994 2.62005 10.3999C2.24005 12.8199 2.74007 15.1099 3.83007 16.9999L2.94006 20.3099C2.74006 21.0599 3.43004 21.7399 4.17004 21.5299L7.43005 20.63C8.91005 21.5 10.64 21.9999 12.49 21.9999C18.13 21.9999 22.81 17.03 22.48 11.41ZM17.3801 15.7199C17.2901 15.8999 17.18 16.07 17.04 16.23C16.79 16.5 16.52 16.7 16.22 16.82C15.92 16.95 15.59 17.01 15.24 17.01C14.73 17.01 14.18 16.89 13.61 16.64C13.03 16.39 12.4601 16.0599 11.8901 15.6499C11.3101 15.2299 10.7701 14.7599 10.2501 14.2499C9.73005 13.7299 9.27003 13.1799 8.85003 12.6099C8.44003 12.0399 8.11005 11.4699 7.87005 10.8999C7.63005 10.3299 7.51006 9.77996 7.51006 9.25996C7.51006 8.91996 7.57006 8.58996 7.69006 8.28996C7.81006 7.97996 8.00007 7.69996 8.27007 7.44996C8.59007 7.12996 8.94005 6.97996 9.31005 6.97996C9.45005 6.97996 9.59002 7.00995 9.72002 7.06995C9.85002 7.12995 9.97005 7.21995 10.0601 7.34995L11.22 8.98994C11.31 9.11994 11.38 9.22994 11.42 9.33994C11.47 9.44994 11.49 9.54994 11.49 9.64994C11.49 9.76994 11.4501 9.88996 11.3801 10.01C11.3101 10.13 11.22 10.2499 11.1 10.3699L10.72 10.7699C10.66 10.8299 10.6401 10.8899 10.6401 10.9699C10.6401 11.0099 10.65 11.0499 10.66 11.0899C10.68 11.1299 10.6901 11.16 10.7001 11.1899C10.7901 11.36 10.95 11.5699 11.17 11.8299C11.4 12.0899 11.6401 12.3599 11.9001 12.6199C12.1701 12.8899 12.4301 13.1299 12.7001 13.3599C12.9601 13.5799 13.18 13.73 13.35 13.82C13.38 13.83 13.4101 13.8499 13.4401 13.8599C13.4801 13.8799 13.5201 13.88 13.5701 13.88C13.6601 13.88 13.7201 13.85 13.7801 13.79L14.16 13.41C14.29 13.28 14.4101 13.19 14.5201 13.13C14.6401 13.06 14.7501 13.0199 14.8801 13.0199C14.9801 13.0199 15.0801 13.0399 15.1901 13.0899C15.3001 13.1399 15.42 13.2 15.54 13.29L17.2001 14.4699C17.3301 14.5599 17.42 14.67 17.48 14.79C17.53 14.92 17.5601 15.0399 17.5601 15.1799C17.5001 15.3499 17.4601 15.5399 17.3801 15.7199Z"
+                      fill="#25D366"
+                    />
+                  </svg>
+                  <h6>Get started on Whatsapp</h6>
+                </a>
+              </div>
+              <div className="checkback_info">
                 <svg
-                  width="25"
-                  height="24"
-                  viewBox="0 0 25 24"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M12.5 4.65C7.72 4.65 3.83 8.54 3.83 13.32C3.83 18.1 7.72 22 12.5 22C17.28 22 21.17 18.11 21.17 13.33C21.17 8.55 17.28 4.65 12.5 4.65ZM13.25 13C13.25 13.41 12.91 13.75 12.5 13.75C12.09 13.75 11.75 13.41 11.75 13V8C11.75 7.59 12.09 7.25 12.5 7.25C12.91 7.25 13.25 7.59 13.25 8V13Z"
-                    fill="white"
+                    opacity="0.4"
+                    d="M9.99996 18.3333C14.6023 18.3333 18.3333 14.6023 18.3333 9.99996C18.3333 5.39759 14.6023 1.66663 9.99996 1.66663C5.39759 1.66663 1.66663 5.39759 1.66663 9.99996C1.66663 14.6023 5.39759 18.3333 9.99996 18.3333Z"
+                    fill="#292D32"
                   />
                   <path
-                    d="M15.39 3.45H9.61C9.21 3.45 8.89 3.13 8.89 2.73C8.89 2.33 9.21 2 9.61 2H15.39C15.79 2 16.11 2.32 16.11 2.72C16.11 3.12 15.79 3.45 15.39 3.45Z"
-                    fill="white"
+                    d="M13.0916 13.275C12.9833 13.275 12.875 13.25 12.775 13.1833L10.1916 11.6416C9.54995 11.2583 9.07495 10.4166 9.07495 9.67497V6.2583C9.07495 5.91663 9.35828 5.6333 9.69995 5.6333C10.0416 5.6333 10.325 5.91663 10.325 6.2583V9.67497C10.325 9.97497 10.575 10.4166 10.8333 10.5666L13.4166 12.1083C13.7166 12.2833 13.8083 12.6666 13.6333 12.9666C13.5083 13.1666 13.3 13.275 13.0916 13.275Z"
+                    fill="#FAFAFA"
                   />
                 </svg>
 
                 <h6>
-                  {timeLeft?.hours} : {timeLeft?.minutes} : {timeLeft?.seconds}
+                  check back on election day <span>for collated results</span>
                 </h6>
               </div>
-              <div className="checkback_info">
-                <p>
-                  check back on election day{" "}
-                  <span>for results and incident reports</span>
-                </p>
+              <div className="time">
+                <div className="time_inner">
+                  <h5>{formatNumber(timeLeft?.days)}</h5>
+                  <h5>Days</h5>
+                </div>
+                <div className="time_inner">
+                  <h5>{formatNumber(timeLeft?.hours)}</h5>
+                  <h5>Hours</h5>
+                </div>
+                <div className="time_inner">
+                  <h5>{formatNumber(timeLeft?.minutes)}</h5>
+                  <h5>Mins</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="contacts">
+            <div className="contact_wrapper">
+              <div className="contact_wrapper_inner">
+                <a
+                  href="https://twitter.com/thepeoplescount"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img src={twitter} alt="twitter" />
+                </a>
+              </div>
+            </div>
+
+            <div className="contact_wrapper">
+              <div className="contact_wrapper_inner">
+                <a
+                  href="https://instagram.com/thepeoplescount"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img src={ig} alt="instagram" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="contacts2">
+            <div className="contact_wrapper">
+              <div className="contact_wrapper_inner">
+                <a
+                  href="https://twitter.com/thepeoplescount"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {" "}
+                  <img src={twitter} alt="twitter" />
+                </a>
+              </div>
+            </div>
+
+            <div className="contact_wrapper">
+              <div className="contact_wrapper_inner">
+                <a
+                  href="https://instagram.com/thepeoplescount"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <img src={ig} alt="instagram" />
+                </a>
               </div>
             </div>
           </div>

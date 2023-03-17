@@ -1,4 +1,8 @@
 .homepage {
+  background-image: url("../assets/Rectangle\ 18876.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,6 +24,7 @@
       }
     }
     p {
+      font-family: "General Sans";
       font-style: normal;
       font-weight: 600;
       font-size: 22px;
@@ -43,8 +48,12 @@
   }
   .homepage_body {
     margin: 135px auto;
-    div {
-      width: 579px;
+    margin-bottom: 0px;
+    .homepage_body_inner {
+      width: 100%;
+      flex-direction: column;
+      display: flex;
+      max-width: 689px;
       h1 {
         font-weight: 500;
         font-size: 56px;
@@ -56,8 +65,9 @@
         color: #000000;
 
         span {
-          color: #1ed760;
           text-decoration: underline;
+          text-decoration-color: #1ed760;
+          text-underline-offset: 0.2em;
         }
       }
       p {
@@ -74,27 +84,41 @@
       .timer {
         margin: auto;
         margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 12px 24px;
-        gap: 12px;
-
-        width: 210px;
-        background: #171717;
-        border-radius: 92px;
-
-        h6 {
+        a {
+          display: flex;
+          justify-content: center;
           align-items: center;
-          color: white;
-          font-family: "General sans light";
-          font-size: 21px;
+          padding: 12px 24px;
+          gap: 12px;
+          width: 300px;
+          background: #171717;
+          text-decoration: none;
+          border-radius: 92px;
+          h6 {
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-family: "General sans light";
+            font-size: 18px;
+          }
         }
       }
       .checkback_info {
-        margin-top: 70px;
+        margin-top: 187px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        p {
+        svg {
+          vertical-align: middle;
+        }
+
+        @media only screen and (max-width: 540px) {
+          svg {
+            display: none;
+          }
+        }
+        h6 {
           font-family: "General Sans";
           font-style: normal;
           font-weight: 500;
@@ -110,13 +134,70 @@
           }
         }
       }
+      .time {
+        display: flex;
+        margin-top: 24px;
+        align-items: center;
+        color: white;
+        justify-content: center;
+      }
+
+      .time_inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 24px;
+        gap: 4px;
+
+        width: 56px;
+        // height: 60px;
+
+        background: #171717;
+        margin-right: 12px;
+        opacity: 0.81;
+        border-radius: 10px;
+
+        h5 {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 22px;
+          line-height: 24px;
+          /* identical to box height, or 109% */
+
+          display: flex;
+          align-items: center;
+          text-align: center;
+          letter-spacing: 0.01em;
+
+          /* General/White */
+
+          color: #ffffff;
+        }
+
+        h5:nth-child(2) {
+          font-family: "General Sans";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 11px;
+          line-height: 16px;
+          /* identical to box height, or 145% */
+
+          display: flex;
+          align-items: center;
+          text-align: center;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #fcfcfc;
+        }
+      }
     }
     @media only screen and (max-width: 540px) {
-      div {
-        width: 327px;
+      .homepage_body_inner {
+        max-width: 327px;
 
         h1 {
-          font-family: "General Sans";
+          font-family: "General Sans light";
           font-style: normal;
           font-weight: 500;
           font-size: 32px;
@@ -137,23 +218,25 @@
         }
         .timer {
           padding: 0px 16px;
-          gap: 12px;
 
-          width: 169px;
-          height: 56px;
-
-          h6 {
-            font-size: 18px;
+          a {
+            gap: 12px;
+            width: 300px;
+            height: 56px;
+            h6 {
+              font-family: "General sans";
+              font-size: 16px;
+            }
           }
         }
         .checkback_info {
           margin-top: 45px;
 
-          p {
+          h6 {
             font-family: "General Sans light";
             font-style: normal;
             font-weight: 500;
-            font-size: 12px;
+            font-size: 13px;
             line-height: 24px;
             text-align: center;
             letter-spacing: 0.1em;
@@ -162,6 +245,74 @@
         }
       }
     }
+  }
+  .contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 16px;
+    gap: 16px;
+
+    position: absolute;
+    width: 116px;
+    left: 0px;
+    bottom: 15%;
+    background: #171717;
+    border-radius: 0px 92px 92px 0px;
+
+    .contact_wrapper {
+      width: 100%;
+      .contact_wrapper_inner {
+        width: 100%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .contacts2 {
+    display: none;
+  }
+  @media only screen and (max-width: 540px) {
+    .contacts {
+      display: none;
+
+      .contact_wrapper {
+        width: 100%;
+        .contact_wrapper_inner {
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .contacts2 {
+      margin-top: 80px;
+      margin-bottom: 40px;
+      display: flex;
+      width: 106px;
+      padding: 16px 16px;
+      border-radius: 0px 92px 92px 0px;
+      background: #171717;
+      .contact_wrapper {
+        width: 90%;
+        margin: 0px 6px;
+        .contact_wrapper_inner {
+          width: 100%;
+          margin-right: 0px 16px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 540px) {
+  .homepage {
+    height: 100%;
   }
 }
 
