@@ -103,6 +103,15 @@
           }
         }
       }
+      @media only screen and (max-width: 920px) {
+        .timer {
+          padding: 0px 16px;
+
+          a {
+            width: 320px;
+          }
+        }
+      }
       .checkback_info {
         margin-top: 187px;
         display: flex;
@@ -111,6 +120,10 @@
 
         svg {
           vertical-align: middle;
+        }
+
+        @media only screen and (max-width: 920px) {
+          margin-top: 107px;
         }
 
         @media only screen and (max-width: 540px) {
@@ -192,6 +205,7 @@
         }
       }
     }
+
     @media only screen and (max-width: 540px) {
       .homepage_body_inner {
         max-width: 327px;
@@ -274,6 +288,43 @@
   .contacts2 {
     display: none;
   }
+
+  @media only screen and (max-width: 920px) {
+    .contacts {
+      display: none;
+
+      .contact_wrapper {
+        width: 100%;
+        .contact_wrapper_inner {
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .contacts2 {
+      margin-top: 80px;
+      margin-bottom: 40px;
+      display: flex;
+      width: 106px;
+      padding: 16px 16px;
+      border-radius: 0px 92px 92px 0px;
+      background: #171717;
+      .contact_wrapper {
+        width: 90%;
+        margin: 0px 6px;
+        .contact_wrapper_inner {
+          width: 100%;
+          margin-right: 0px 16px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
   @media only screen and (max-width: 540px) {
     .contacts {
       display: none;
@@ -308,6 +359,11 @@
         }
       }
     }
+  }
+}
+@media only screen and (max-width: 920px) {
+  .homepage {
+    height: 100%;
   }
 }
 @media only screen and (max-width: 540px) {
