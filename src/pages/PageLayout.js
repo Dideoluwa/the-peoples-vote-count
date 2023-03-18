@@ -7,81 +7,56 @@ import apc from "../assets/apc.png";
 import pdp from "../assets/pdp.png";
 import others from "../assets/others.png";
 import voters from "../assets/people.png";
-import axios from "axios";
 import "./PageLayout.scss";
-
-// const lagosLGAs = [
-//   "Select a LGA",
-//   "Agege",
-//   "Ajeromi-Ifelodun",
-//   "Alimosho",
-//   "Amuwo-Odofin",
-//   "Apapa",
-//   "Badagry",
-//   "Epe",
-//   "Eti-Osa",
-//   "Ibeju-Lekki",
-//   "Ifako-Ijaiye",
-//   "Ikeja",
-//   "Ikorodu",
-//   "Kosofe",
-//   "Lagos Island",
-//   "Lagos Mainland",
-//   "Mushin",
-//   "Ojo",
-//   "Oshodi-Isolo",
-//   "Shomolu",
-//   "Surulere",
-// ];
+import { NavLink, Outlet } from "react-router-dom";
+import axios from "axios";
 
 const PageLayout = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [people, setPeople] = useState([]);
   const lgaChangeHandler = () => {
-    setIsOpen(people);
+    setIsOpen(null);
   };
 
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [countdown, setCountdown] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+  });
 
   useEffect(() => {
-    const now = new Date();
-    const tomorrow8AM = new Date();
-    tomorrow8AM.setDate(now.getDate() + 1);
-    tomorrow8AM.setHours(8);
-    tomorrow8AM.setMinutes(0);
-    tomorrow8AM.setSeconds(0);
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const eventTime = new Date();
+      eventTime.setHours(8, 0, 0, 0);
 
-    const difference = tomorrow8AM.getTime() - now.getTime();
+      const distance = eventTime - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        .toString()
+        .padStart(2, "0");
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      )
+        .toString()
+        .padStart(2, "0");
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        .toString()
+        .padStart(2, "0");
 
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((difference / (1000 * 60)) % 60);
-
-    setTimeLeft({ days, hours, minutes });
-
-    const intervalId = setInterval(() => {
-      const now = new Date();
-      const difference = tomorrow8AM.getTime() - now.getTime();
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((difference / (1000 * 60)) % 60);
-
-      setTimeLeft({ days, hours, minutes });
+      setCountdown({ days, hours, minutes });
     }, 1000);
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(interval);
   }, []);
-
-  function formatNumber(num) {
-    return num?.toString().padStart(2, "0");
-  }
 
   useEffect(() => {
     axios
-      .get("https://api.airtable.com/v0/appk4neNtR84y3Ozm/Table%201", {
-        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-      })
+      .get(
+        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
+        {
+          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+        }
+      )
       .then((response) => {
         console.log(response.data.records);
         setPeople(response.data.records);
@@ -90,6 +65,11 @@ const PageLayout = () => {
         console.log(error);
       });
   }, []);
+
+  function formatNumber(num) {
+    console.log(people);
+    return num?.toString().padStart(2, "0");
+  }
 
   return (
     <div>
@@ -156,15 +136,15 @@ const PageLayout = () => {
               </div>
               <div className="time">
                 <div className="time_inner">
-                  <h5>{formatNumber(timeLeft?.days)}</h5>
+                  <h5>{formatNumber(countdown?.days)}</h5>
                   <h5>Days</h5>
                 </div>
                 <div className="time_inner">
-                  <h5>{formatNumber(timeLeft?.hours)}</h5>
+                  <h5>{formatNumber(countdown?.hours)}</h5>
                   <h5>Hours</h5>
                 </div>
                 <div className="time_inner">
-                  <h5>{formatNumber(timeLeft?.minutes)}</h5>
+                  <h5>{formatNumber(countdown?.minutes)}</h5>
                   <h5>Mins</h5>
                 </div>
               </div>
@@ -234,29 +214,29 @@ const PageLayout = () => {
                   <img src={logo} alt="logo" />
                 </div>
               </div>
-              <p>TPC</p>
             </div>
-            <div className="contact">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M18.3167 9.50835C18.0334 4.67502 13.6417 0.950029 8.58341 1.78336C5.10008 2.35836 2.30841 5.18335 1.76675 8.66668C1.45008 10.6833 1.86677 12.5917 2.7751 14.1667L2.03342 16.925C1.86675 17.55 2.44174 18.1167 3.0584 17.9417L5.77508 17.1917C7.00841 17.9167 8.45008 18.3333 9.99174 18.3333C14.6917 18.3333 18.5917 14.1917 18.3167 9.50835ZM14.0668 13.1C13.9918 13.25 13.9001 13.3917 13.7834 13.525C13.5751 13.75 13.3501 13.9167 13.1001 14.0167C12.8501 14.125 12.5751 14.175 12.2834 14.175C11.8584 14.175 11.4001 14.075 10.9251 13.8667C10.4417 13.6584 9.96676 13.3833 9.49176 13.0417C9.00843 12.6917 8.55842 12.3 8.12508 11.875C7.69175 11.4417 7.3084 10.9833 6.9584 10.5083C6.61673 10.0333 6.34175 9.55835 6.14175 9.08335C5.94175 8.60835 5.84176 8.15002 5.84176 7.71669C5.84176 7.43336 5.89175 7.15836 5.99175 6.90836C6.09175 6.65002 6.2501 6.41669 6.4751 6.20836C6.74177 5.94169 7.03342 5.81669 7.34175 5.81669C7.45842 5.81669 7.57506 5.84169 7.68339 5.89169C7.79173 5.94169 7.89175 6.01669 7.96675 6.12502L8.93339 7.49168C9.00839 7.60001 9.06674 7.69168 9.10007 7.78335C9.14174 7.87501 9.15841 7.95834 9.15841 8.04168C9.15841 8.14168 9.12509 8.24169 9.06676 8.34169C9.00842 8.44169 8.9334 8.54168 8.8334 8.64168L8.51673 8.97501C8.46673 9.02501 8.4501 9.07502 8.4501 9.14169C8.4501 9.17502 8.4584 9.20835 8.46673 9.24168C8.4834 9.27501 8.49176 9.30002 8.5001 9.32502C8.5751 9.46669 8.7084 9.64167 8.89174 9.85834C9.0834 10.075 9.28344 10.3 9.50011 10.5167C9.72511 10.7417 9.94176 10.9417 10.1668 11.1333C10.3834 11.3167 10.5667 11.4417 10.7084 11.5167C10.7334 11.525 10.7584 11.5417 10.7834 11.55C10.8168 11.5667 10.8501 11.5667 10.8918 11.5667C10.9668 11.5667 11.0168 11.5417 11.0668 11.4917L11.3834 11.175C11.4917 11.0667 11.5918 10.9917 11.6834 10.9417C11.7834 10.8834 11.8751 10.85 11.9834 10.85C12.0668 10.85 12.1501 10.8667 12.2418 10.9083C12.3334 10.95 12.4334 11 12.5334 11.075L13.9168 12.0584C14.0251 12.1334 14.1001 12.225 14.1501 12.325C14.1917 12.4334 14.2167 12.5333 14.2167 12.65C14.1667 12.7917 14.1334 12.95 14.0668 13.1Z"
-                  fill="#25D366"
-                />
-              </svg>
+            <a
+              href="https://wa.me/message/U76ZSMNPTCORK1"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="contact">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M18.3167 9.50835C18.0334 4.67502 13.6417 0.950029 8.58341 1.78336C5.10008 2.35836 2.30841 5.18335 1.76675 8.66668C1.45008 10.6833 1.86677 12.5917 2.7751 14.1667L2.03342 16.925C1.86675 17.55 2.44174 18.1167 3.0584 17.9417L5.77508 17.1917C7.00841 17.9167 8.45008 18.3333 9.99174 18.3333C14.6917 18.3333 18.5917 14.1917 18.3167 9.50835ZM14.0668 13.1C13.9918 13.25 13.9001 13.3917 13.7834 13.525C13.5751 13.75 13.3501 13.9167 13.1001 14.0167C12.8501 14.125 12.5751 14.175 12.2834 14.175C11.8584 14.175 11.4001 14.075 10.9251 13.8667C10.4417 13.6584 9.96676 13.3833 9.49176 13.0417C9.00843 12.6917 8.55842 12.3 8.12508 11.875C7.69175 11.4417 7.3084 10.9833 6.9584 10.5083C6.61673 10.0333 6.34175 9.55835 6.14175 9.08335C5.94175 8.60835 5.84176 8.15002 5.84176 7.71669C5.84176 7.43336 5.89175 7.15836 5.99175 6.90836C6.09175 6.65002 6.2501 6.41669 6.4751 6.20836C6.74177 5.94169 7.03342 5.81669 7.34175 5.81669C7.45842 5.81669 7.57506 5.84169 7.68339 5.89169C7.79173 5.94169 7.89175 6.01669 7.96675 6.12502L8.93339 7.49168C9.00839 7.60001 9.06674 7.69168 9.10007 7.78335C9.14174 7.87501 9.15841 7.95834 9.15841 8.04168C9.15841 8.14168 9.12509 8.24169 9.06676 8.34169C9.00842 8.44169 8.9334 8.54168 8.8334 8.64168L8.51673 8.97501C8.46673 9.02501 8.4501 9.07502 8.4501 9.14169C8.4501 9.17502 8.4584 9.20835 8.46673 9.24168C8.4834 9.27501 8.49176 9.30002 8.5001 9.32502C8.5751 9.46669 8.7084 9.64167 8.89174 9.85834C9.0834 10.075 9.28344 10.3 9.50011 10.5167C9.72511 10.7417 9.94176 10.9417 10.1668 11.1333C10.3834 11.3167 10.5667 11.4417 10.7084 11.5167C10.7334 11.525 10.7584 11.5417 10.7834 11.55C10.8168 11.5667 10.8501 11.5667 10.8918 11.5667C10.9668 11.5667 11.0168 11.5417 11.0668 11.4917L11.3834 11.175C11.4917 11.0667 11.5918 10.9917 11.6834 10.9417C11.7834 10.8834 11.8751 10.85 11.9834 10.85C12.0668 10.85 12.1501 10.8667 12.2418 10.9083C12.3334 10.95 12.4334 11 12.5334 11.075L13.9168 12.0584C14.0251 12.1334 14.1001 12.225 14.1501 12.325C14.1917 12.4334 14.2167 12.5333 14.2167 12.65C14.1667 12.7917 14.1334 12.95 14.0668 13.1Z"
+                    fill="#25D366"
+                  />
+                </svg>
 
-              <p>
-                {" "}
-                <a href="https://wa.me/message/U76ZSMNPTCORK1">
-                  Submit your vote
-                </a>
-              </p>
-            </div>
+                <p> Submit your vote</p>
+              </div>
+            </a>
           </div>
           <div className="body">
             <div className="body_head">
@@ -323,6 +303,34 @@ const PageLayout = () => {
               <div className="body_inner_image">
                 <img src={voters} alt="people" />
               </div>
+            </div>
+            <div className="body_table">
+              <div className="body_table_header">
+                <NavLink
+                  exact
+                  to="/"
+                  className={(navData) => (navData.isActive ? "active" : "")}
+                >
+                  LGA
+                </NavLink>
+
+                <NavLink
+                  exact
+                  to="/polling-unit"
+                  className={(navData) => (navData.isActive ? "active" : "")}
+                >
+                  Polling Unit
+                </NavLink>
+
+                <NavLink
+                  exact
+                  to="/incident-report"
+                  className={(navData) => (navData.isActive ? "active" : "")}
+                >
+                  Incidents
+                </NavLink>
+              </div>
+              <Outlet />
             </div>
           </div>
         </div>

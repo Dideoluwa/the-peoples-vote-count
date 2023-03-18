@@ -609,6 +609,7 @@
       letter-spacing: -0.04em;
       color: #171717;
     }
+
     div:nth-child(2) {
       display: flex;
       margin-top: 16px;
@@ -747,7 +748,7 @@
       align-items: center;
     }
     .homepage_header_wrapper {
-      width: 3%;
+      width: 30%;
       margin-right: 12px;
 
       .homepage_header_wrapper_inner {
@@ -755,6 +756,12 @@
         img {
           width: 100%;
         }
+      }
+    }
+
+    @media only screen and (max-width: 540px) {
+      .homepage_header_wrapper {
+        width: 90%;
       }
     }
     p {
@@ -765,32 +772,39 @@
       line-height: 30px;
       color: #171717;
     }
-    .contact {
-      display: flex;
-      align-items: center;
-      padding: 10px 16px;
-      gap: 8px;
-      background: #171717;
-      border-radius: 92px;
+    a {
+      color: #ffffff;
+      text-decoration: none;
 
-      p {
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 24px;
-        /* identical to box height, or 171% */
-
+      .contact {
         display: flex;
         align-items: center;
-        text-align: right;
+        padding: 10px 16px;
+        gap: 8px;
+        background: #171717;
+        border-radius: 92px;
 
-        /* General/White */
+        p {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 24px;
+          /* identical to box height, or 171% */
 
-        color: #ffffff;
-        a {
+          display: flex;
+          align-items: center;
+          text-align: right;
+
+          /* General/White */
+
           color: #ffffff;
-          text-decoration: none;
         }
       }
+    }
+  }
+
+  @media only screen and (max-width: 540px) {
+    .header {
+      margin: 12px 10px;
     }
   }
   .body {
@@ -819,6 +833,11 @@
 
         color: #171717;
       }
+      @media only screen and (max-width: 540px) {
+        h2 {
+          font-size: 16px;
+        }
+      }
       p {
         font-family: "General Sans light";
         font-style: normal;
@@ -834,6 +853,11 @@
 
         opacity: 0.9;
       }
+      @media only screen and (max-width: 540px) {
+        p {
+          font-size: 12px;
+        }
+      }
     }
     .body_inner {
       margin: auto;
@@ -843,6 +867,11 @@
         width: 20%;
         img {
           width: 100%;
+        }
+      }
+      @media only screen and (max-width: 540px) {
+        .body_inner_image {
+          display: none;
         }
       }
       .body_inner_chart {
@@ -879,7 +908,82 @@
             }
           }
         }
+        @media only screen and (max-width: 540px) {
+          p {
+            font-size: 12px;
+          }
+        }
       }
+      @media only screen and (max-width: 540px) {
+        .body_inner_chart {
+          width: 100%;
+        }
+      }
+    }
+    .body_table {
+      margin: 48px auto;
+      .body_table_header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 24px 24px 0px;
+
+        width: 1120px;
+        height: 72px;
+
+        /* Base/White */
+
+        background: #ffffff;
+        border: 1px solid rgba(23, 23, 23, 0.08);
+        border-radius: 12px;
+
+        a {
+          text-decoration: none;
+          color: #171717;
+          margin-right: 32px;
+          font-weight: 500;
+          font-size: 16px;
+          font-family: "General sans light";
+          line-height: 24px;
+          padding-bottom: 20px;
+          /* identical to box height, or 150% */
+
+          display: flex;
+          align-items: center;
+          letter-spacing: -0.01em;
+          text-transform: capitalize;
+
+          /* General/Black */
+
+          color: #171717;
+        }
+        @media only screen and (max-width: 540px) {
+          a {
+            font-size: 12px;
+            width: 100%;
+          }
+        }
+        .active {
+          border-bottom: 2px solid black;
+        }
+      }
+      @media only screen and (max-width: 540px) {
+        .body_table_header {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+    }
+    @media only screen and (max-width: 540px) {
+      .body_table {
+        margin: 0;
+        // overflow-x: scroll;
+      }
+    }
+  }
+  @media only screen and (max-width: 540px) {
+    .body {
+      margin: 20px 12px;
     }
   }
 }
