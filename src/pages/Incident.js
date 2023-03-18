@@ -51,7 +51,7 @@ function Incident() {
 
   useEffect(() => {
     const filterResultByLga = people?.filter((data, index) => {
-      return data?.fields?.Status !== "Accepted";
+      return data?.fields?.Status === "Accepted";
     });
     setFilter(filterResultByLga);
   }, [people]);
