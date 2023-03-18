@@ -95,7 +95,7 @@ const PageLayout = () => {
               <p>
                 The People’s Count is a decentralized, non-partisan effort to
                 count every vote and report every incident in the Lagos State
-                gubernatorial election.
+                governorship election.
               </p>
               <div className="timer">
                 <a href="https://wa.me/message/U76ZSMNPTCORK1">
@@ -134,7 +134,8 @@ const PageLayout = () => {
                 </svg>
 
                 <h6>
-                  check back on election day <span>for collated results</span>
+                  CHECK BACK AFTER VOTING ENDS
+                  <span> for collated results</span>
                 </h6>
               </div>
               <div className="time">
