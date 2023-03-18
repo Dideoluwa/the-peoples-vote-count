@@ -30,7 +30,7 @@ function Incident() {
   const [lga, setLga] = useState("Agege");
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState([]);
-  const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState(filter);
 
   useEffect(() => {
     axios
@@ -69,7 +69,7 @@ function Incident() {
   return (
     <div className="head">
       <div className="heading">
-        <p>Most incidence reported from:</p>
+        <p></p>
         <div className="form__inner">
           <div className="form__inner__input">
             <select value={lga} onChange={lgaChangeHandler}>

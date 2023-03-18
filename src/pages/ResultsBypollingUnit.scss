@@ -7,7 +7,7 @@
     align-items: center;
 
     // padding: 22px 24px;
-    margin: 0px 5px;
+    margin: 0px 24px;
 
     // height: 64px;
 
@@ -57,7 +57,7 @@
         align-items: center;
         border: 1px solid #a2a2a2;
         border-radius: 70px;
-        width: 30%;
+        width: 40%;
         input {
           font-size: 16px;
           width: 100%;
@@ -192,6 +192,8 @@
   }
   .polling_units_table_cover {
     overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     .polling_units_table_inner {
       // overflow-x: scroll;
@@ -267,8 +269,6 @@
       }
     }
     .polling_units_table_inner2 {
-      // overflow-x: scroll;
-      // margin: 0px 48px 0px 0px;
       background: #fcfcfc;
       border: 0.5px solid rgba(23, 23, 23, 0.1);
       display: flex;
@@ -325,7 +325,7 @@
         }
         div:nth-child(4) {
           flex: 1;
-          max-width: 20%;
+          max-width: 10%;
         }
       }
     }

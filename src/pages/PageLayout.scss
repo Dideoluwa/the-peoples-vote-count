@@ -877,6 +877,7 @@
       .body_inner_chart {
         width: 584px;
         height: 48px;
+        display: flex;
         background: #ffffff;
         border: 1px solid #f2f3f5;
         position: relative;
@@ -902,6 +903,8 @@
           padding: 5px 12px;
           .body_inner_chart_guage_text_wrapper {
             width: 15%;
+            display: flex;
+            align-items: center;
             z-index: 1000;
             img {
               width: 100%;

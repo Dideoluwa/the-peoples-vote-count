@@ -269,14 +269,14 @@ const PageLayout = () => {
                   />
                 </svg>
 
-                <p> Submit your vote</p>
+                <p> Upload your result</p>
               </div>
             </a>
           </div>
           <div className="body">
             <div className="body_head">
               <h2>Lagos Governorship Election</h2>
-              <p>total Valid votes 900,000</p>
+              <p>total Valid votes {TOTAL}</p>
             </div>
             <div className="body_inner">
               <div>

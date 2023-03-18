@@ -94,7 +94,7 @@ function ResultByLga() {
   return (
     <div className="head">
       <div className="heading">
-        <p>LGA Won by</p>
+        <p></p>
         <div className="form__inner">
           <div className="form__inner__input">
             <select value={lga} onChange={lgaChangeHandler}>
