@@ -12,7 +12,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 
 const PageLayout = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [people, setPeople] = useState([]);
   const lgaChangeHandler = () => {
     setIsOpen(null);
@@ -330,7 +330,9 @@ const PageLayout = () => {
                   Incidents
                 </NavLink>
               </div>
-              <Outlet />
+              <div className="outlet">
+                <Outlet />
+              </div>
             </div>
           </div>
         </div>

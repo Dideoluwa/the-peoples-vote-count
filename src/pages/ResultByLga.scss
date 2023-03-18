@@ -1,7 +1,6 @@
 .head {
   background: #ffffff;
   border: 1px solid rgba(23, 23, 23, 0.08);
-  overflow-y: scroll;
   .heading {
     display: flex;
     justify-content: space-between;
@@ -31,26 +30,6 @@
       /* General/Black */
 
       color: #171717;
-    }
-
-    .form__inner__input {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      max-width: 100%;
-      select {
-        font-size: 16px;
-        border: 1px solid #7a7a7b;
-        border-radius: 16px;
-        padding: 13px 12px;
-        background-color: white;
-        color: black;
-        -webkit-appearance: none;
-      }
-
-      select:focus {
-        outline: none;
-      }
     }
   }
   .polling_units_table {
@@ -102,45 +81,59 @@
       width: 20%;
     }
   }
-  .polling_units_table_inner {
-    // margin: 0px 48px 0px 0px;
-    background: #fcfcfc;
-    border: 0.5px solid rgba(23, 23, 23, 0.1);
-    display: flex;
-    justify-content: space-between;
-    div {
-      padding: 24px;
-      margin: 0px;
+  .polling_units_table_cover {
+    .polling_units_table_inner {
+      // margin: 0px 48px 0px 0px;
+      background: #fcfcfc;
+      //   width: 250%;
+      border: 0.5px solid rgba(23, 23, 23, 0.1);
+      display: flex;
+      justify-content: space-between;
+      div {
+        padding: 24px;
+        margin: 0px;
 
-      p {
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 20px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #171717;
+        p {
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 20px;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: #171717;
+        }
+      }
+      div:nth-child(1) {
+        flex: 1;
+        max-width: 40%;
+      }
+      div:nth-child(2) {
+        flex: 1;
+        max-width: 15%;
+      }
+      div:nth-child(3) {
+        flex: 1;
+        max-width: 15%;
+      }
+      div:nth-child(4) {
+        flex: 1;
+        max-width: 15%;
+      }
+      div:nth-child(5) {
+        flex: 1;
+        max-width: 7%;
+        text-align: center;
       }
     }
-    div:nth-child(1) {
-      flex: 1;
-      max-width: 40%;
-    }
-    div:nth-child(2) {
-      flex: 1;
-      max-width: 15%;
-    }
-    div:nth-child(3) {
-      flex: 1;
-      max-width: 15%;
-    }
-    div:nth-child(4) {
-      flex: 1;
-      max-width: 15%;
-    }
-    div:nth-child(5) {
-      flex: 1;
-      max-width: 7%;
-      text-align: center;
+  }
+  @media only screen and (max-width: 920px) {
+    .polling_units_table_cover {
+      overflow-x: scroll;
+      width: 100%;
+
+      .polling_units_table_inner {
+        background: #fcfcfc;
+        width: 250%;
+      }
     }
   }
 }
