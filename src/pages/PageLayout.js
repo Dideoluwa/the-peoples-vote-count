@@ -18,36 +18,36 @@ const PageLayout = () => {
     setIsOpen(null);
   };
 
-  const [countdown, setCountdown] = useState({
-    days: "00",
-    hours: "00",
-    minutes: "00",
-  });
+  // const [countdown, setCountdown] = useState({
+  //   days: "00",
+  //   hours: "00",
+  //   minutes: "00",
+  // });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const eventTime = new Date();
-      eventTime.setHours(8, 0, 0, 0);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const now = new Date().getTime();
+  //     const eventTime = new Date();
+  //     eventTime.setHours(8, 0, 0, 0);
 
-      const distance = eventTime - now;
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        .toString()
-        .padStart(2, "0");
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      )
-        .toString()
-        .padStart(2, "0");
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        .toString()
-        .padStart(2, "0");
+  //     const distance = eventTime - now;
+  //     const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+  //       .toString()
+  //       .padStart(2, "0");
+  //     const hours = Math.floor(
+  //       (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  //     )
+  //       .toString()
+  //       .padStart(2, "0");
+  //     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+  //       .toString()
+  //       .padStart(2, "0");
 
-      setCountdown({ days, hours, minutes });
-    }, 1000);
+  //     setCountdown({ days, hours, minutes });
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   useEffect(() => {
     axios
@@ -67,7 +67,7 @@ const PageLayout = () => {
   }, []);
 
   console.log(people);
-  console.log(countdown);
+  // console.log(countdown);
 
   // function formatNumber(num) {
   //   console.log(people);
