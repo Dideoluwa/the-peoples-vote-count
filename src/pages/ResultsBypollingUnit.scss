@@ -6,7 +6,8 @@
     justify-content: space-between;
     align-items: center;
 
-    padding: 22px 24px;
+    // padding: 22px 24px;
+    margin: 0px 5px;
 
     // height: 64px;
 
@@ -14,6 +15,78 @@
 
     /* Inside auto layout */
     order: 4;
+
+    .pollen_units_table_input {
+      display: flex;
+      align-items: center;
+      border: 1px solid #a2a2a2;
+      border-radius: 70px;
+      width: 20%;
+      input {
+        font-size: 16px;
+        width: 100%;
+        border: 1px solid transparent;
+        border-radius: 70px;
+        padding: 13px 12px;
+      }
+
+      input:focus {
+        outline: none;
+        border: 1px solid transparent;
+        background-color: #ffffff;
+      }
+      p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 19px;
+        margin-left: 13px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        letter-spacing: 0.03em;
+        color: #171717;
+      }
+      svg {
+        margin-left: 15px;
+      }
+    }
+
+    @media only screen and (max-width: 540px) {
+      .pollen_units_table_input {
+        display: flex;
+        align-items: center;
+        border: 1px solid #a2a2a2;
+        border-radius: 70px;
+        width: 40%;
+        input {
+          font-size: 16px;
+          width: 100%;
+          border: 1px solid transparent;
+          border-radius: 70px;
+          padding: 8px;
+        }
+
+        input:focus {
+          outline: none;
+          border: 1px solid transparent;
+          background-color: #ffffff;
+        }
+        p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+          margin-left: 13px;
+          display: flex;
+          align-items: center;
+          text-align: right;
+          letter-spacing: 0.03em;
+          color: #171717;
+        }
+        svg {
+          margin-left: 15px;
+        }
+      }
+    }
 
     p {
       font-weight: 500;

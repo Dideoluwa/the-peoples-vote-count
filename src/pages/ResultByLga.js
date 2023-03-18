@@ -77,9 +77,6 @@ function ResultByLga() {
           <div>
             <p>precent</p>
           </div>
-          <div>
-            <p>precent</p>
-          </div>
         </div>
         {people?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
@@ -96,9 +93,6 @@ function ResultByLga() {
               </div>
               <div>
                 <p>{data.lga}</p>
-              </div>
-              <div>
-                <p>120</p>
               </div>
               <div>
                 <p>120</p>

@@ -12,7 +12,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 
 const PageLayout = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [people, setPeople] = useState([]);
   const lgaChangeHandler = () => {
     setIsOpen(null);
@@ -66,10 +66,13 @@ const PageLayout = () => {
       });
   }, []);
 
-  function formatNumber(num) {
-    console.log(people);
-    return num?.toString().padStart(2, "0");
-  }
+  console.log(people);
+  console.log(countdown);
+
+  // function formatNumber(num) {
+  //   console.log(people);
+  //   return num?.toString().padStart(2, "0");
+  // }
 
   return (
     <div>
@@ -136,15 +139,15 @@ const PageLayout = () => {
               </div>
               <div className="time">
                 <div className="time_inner">
-                  <h5>{formatNumber(countdown?.days)}</h5>
+                  <h5>00</h5>
                   <h5>Days</h5>
                 </div>
                 <div className="time_inner">
-                  <h5>{formatNumber(countdown?.hours)}</h5>
+                  <h5>00</h5>
                   <h5>Hours</h5>
                 </div>
                 <div className="time_inner">
-                  <h5>{formatNumber(countdown?.minutes)}</h5>
+                  <h5>00</h5>
                   <h5>Mins</h5>
                 </div>
               </div>
