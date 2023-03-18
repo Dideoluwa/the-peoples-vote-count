@@ -63,42 +63,44 @@ function Incident() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_inner">
-        <div>
-          <p>LGA</p>
-        </div>
-        <div>
-          <p>MOST REPORTED</p>
-        </div>
-        <div>
-          <p>SECOND</p>
-        </div>
-        <div>
-          <p>THIRD</p>
-        </div>
-      </div>
-      {people?.map((data, index) => {
-        const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
-        return (
-          <div
-            style={{ backgroundColor: color }}
-            className="polling_units_table_inner"
-          >
-            <div>
-              <p>{data.s}</p>
-            </div>
-            <div>
-              <p>{data.fileds}</p>
-            </div>
-            <div>
-              <p>{data.lga}</p>
-            </div>
-            <div>
-              <p>120</p>
-            </div>
+      <div className="polling_units_table_cover">
+        <div className="polling_units_table_inner">
+          <div>
+            <p>LGA</p>
           </div>
-        );
-      })}
+          <div>
+            <p>MOST REPORTED</p>
+          </div>
+          <div>
+            <p>SECOND</p>
+          </div>
+          <div>
+            <p>THIRD</p>
+          </div>
+        </div>
+        {people?.map((data, index) => {
+          const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
+          return (
+            <div
+              style={{ backgroundColor: color }}
+              className="polling_units_table_inner"
+            >
+              <div>
+                <p>{data.s}</p>
+              </div>
+              <div>
+                <p>{data.fileds}</p>
+              </div>
+              <div>
+                <p>{data.lga}</p>
+              </div>
+              <div>
+                <p>120</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
