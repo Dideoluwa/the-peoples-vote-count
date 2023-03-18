@@ -313,25 +313,31 @@
       @media only screen and (max-width: 540px) {
         div:nth-child(1) {
           flex: 1;
-          max-width: 20%;
+          max-width: 30%;
         }
         div:nth-child(2) {
           flex: 1;
-          max-width: 15%;
+          max-width: 35%;
         }
         div:nth-child(3) {
           flex: 1;
-          max-width: 20%;
+          max-width: 10%;
         }
         div:nth-child(4) {
           flex: 1;
           max-width: 20%;
         }
-        div:nth-child(5) {
-          flex: 1;
-          max-width: 20%;
-          text-align: center;
-        }
+      }
+    }
+  }
+  @media only screen and (max-width: 920px) {
+    .polling_units_table_cover {
+      overflow-x: scroll;
+      width: 100%;
+
+      .polling_units_table_inner2 {
+        background: #fcfcfc;
+        width: 250%;
       }
     }
   }
