@@ -27,25 +27,42 @@ const lagosLGAs = [
 ];
 
 function Incident() {
-  const [lga, setLga] = useState("");
+  const [lga, setLga] = useState("Agege");
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
+        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Incidents?maxRecords=3&view=Grid%20view",
         {
           headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
         }
       )
       .then((response) => {
-        console.log(response.data.records);
+        // console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    const resultByLga = filter?.filter((data, index) => {
+      return data?.fields?.LGA?.toLowerCase() === lga?.toLowerCase();
+    });
+    setLocalGovernmentResult(resultByLga);
+  }, [filter, lga]);
+
   const lgaChangeHandler = (e) => {
     setLga(e.target.value);
   };
@@ -64,38 +81,38 @@ function Incident() {
         </div>
       </div>
       <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner">
+        <div className="polling_units_table_inner2">
+          <div>
+            <p>Type</p>
+          </div>
+          <div>
+            <p>Caption</p>
+          </div>
           <div>
             <p>LGA</p>
           </div>
           <div>
-            <p>MOST REPORTED</p>
-          </div>
-          <div>
-            <p>SECOND</p>
-          </div>
-          <div>
-            <p>THIRD</p>
+            <p>PU Address</p>
           </div>
         </div>
-        {people?.map((data, index) => {
+        {localGovernmentResult?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
           return (
             <div
               style={{ backgroundColor: color }}
-              className="polling_units_table_inner"
+              className="polling_units_table_inner2"
             >
               <div>
-                <p>{data.s}</p>
+                <p>{data.fields.Type}</p>
               </div>
               <div>
-                <p>{data.fileds}</p>
+                <p>{data?.fields.Caption || `No caption Available`}</p>
               </div>
               <div>
-                <p>{data.lga}</p>
+                <p>{data.fields.LGA}</p>
               </div>
               <div>
-                <p>120</p>
+                <p>{data.fields["PU Address"]}</p>
               </div>
             </div>
           );

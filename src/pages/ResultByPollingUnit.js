@@ -27,8 +27,26 @@ const lagosLGAs = [
 ];
 
 function ResultByPollingUnit() {
-  const [lga, setLga] = useState("");
+  const [lga, setLga] = useState("Agege");
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
+  const [filteredResults, setFilteredResults] = useState(localGovernmentResult);
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    const resultByLga = filter?.filter((data, index) => {
+      return data?.fields?.LGA?.toLowerCase() === lga?.toLowerCase();
+    });
+    setLocalGovernmentResult(resultByLga);
+  }, [filter, lga]);
 
   useEffect(() => {
     axios
@@ -39,7 +57,6 @@ function ResultByPollingUnit() {
         }
       )
       .then((response) => {
-        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
@@ -49,6 +66,17 @@ function ResultByPollingUnit() {
   const lgaChangeHandler = (e) => {
     setLga(e.target.value);
   };
+
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    const filterResults = localGovernmentResult?.filter((data, index) =>
+      data.fields["PU Address"].toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredResults(filterResults);
+  }, [search, localGovernmentResult]);
   return (
     <div className="head">
       <div className="heading">
@@ -71,7 +99,12 @@ function ResultByPollingUnit() {
               fill="#C4C4C4"
             />
           </svg>
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={searchHandler}
+            value={search}
+          />
         </div>
         <div className="form__inner">
           <div className="form__inner__input">
@@ -86,19 +119,29 @@ function ResultByPollingUnit() {
       <div className="polling_units_table_cover">
         <div className="polling_units_table_inner">
           <div>
-            <p>Candidate</p>
+            <p>POLLING UNIT</p>
           </div>
           <div>
-            <p>Party</p>
+            <p>WARD</p>
           </div>
           <div>
-            <p>Votes</p>
+            <p>LGA</p>
           </div>
           <div>
-            <p>precent</p>
+            <p>LP</p>
+          </div>
+
+          <div>
+            <p>APC</p>
+          </div>
+          <div>
+            <p>PDP</p>
+          </div>
+          <div>
+            <p>TOTAL</p>
           </div>
         </div>
-        {people?.map((data, index) => {
+        {filteredResults?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
           return (
             <div
@@ -106,16 +149,25 @@ function ResultByPollingUnit() {
               className="polling_units_table_inner"
             >
               <div>
-                <p>{data.s}</p>
+                <p>{data.fields["PU Address"]}</p>
               </div>
               <div>
-                <p>{data.fileds}</p>
+                <p>{data.fields.Ward}</p>
               </div>
               <div>
-                <p>{data.lga}</p>
+                <p>{data.fields.LGA}</p>
               </div>
               <div>
-                <p>120</p>
+                <p>{data.fields.LP}</p>
+              </div>
+              <div>
+                <p>{data.fields.APC}</p>
+              </div>
+              <div>
+                <p>{data.fields.PDP}</p>
+              </div>
+              <div>
+                <p>{data.fields["Total Valid Votes"]}</p>
               </div>
             </div>
           );

@@ -27,8 +27,14 @@ const lagosLGAs = [
 ];
 
 function ResultByLga() {
-  const [lga, setLga] = useState("");
+  const [lga, setLga] = useState("Agege");
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
+  const [APC, setTotalApc] = useState(null);
+  const [PDP, setTotalPdp] = useState(null);
+  const [LP, setTotalLp] = useState(null);
+  const [TOTAL, setTotal] = useState(null);
 
   useEffect(() => {
     axios
@@ -39,13 +45,49 @@ function ResultByLga() {
         }
       )
       .then((response) => {
-        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    const resultByLga = filter?.filter((data, index) => {
+      return data?.fields?.LGA?.toLowerCase() === lga?.toLowerCase();
+    });
+    setLocalGovernmentResult(resultByLga);
+  }, [filter, lga]);
+
+  useEffect(() => {
+    const totalApc = localGovernmentResult?.reduce((index, data) => {
+      return index + data?.fields?.APC;
+    }, 0);
+    setTotalApc(totalApc);
+
+    const totalPdp = localGovernmentResult?.reduce((index, data) => {
+      return index + data?.fields?.PDP;
+    }, 0);
+    setTotalPdp(totalPdp);
+
+    const totalLp = localGovernmentResult?.reduce((index, data) => {
+      return index + data?.fields?.LP;
+    }, 0);
+    setTotalLp(totalLp);
+
+    const total = localGovernmentResult?.reduce((index, data) => {
+      return index + data?.fields["Total Valid Votes"];
+    }, 0);
+    setTotal(total);
+  }, [localGovernmentResult]);
+
   const lgaChangeHandler = (e) => {
     setLga(e.target.value);
   };
@@ -78,28 +120,59 @@ function ResultByLga() {
             <p>precent</p>
           </div>
         </div>
-        {people?.map((data, index) => {
-          const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
-          return (
-            <div
-              style={{ backgroundColor: color }}
-              className="polling_units_table_inner"
-            >
-              <div>
-                <p>{data.s}</p>
-              </div>
-              <div>
-                <p>{data.fileds}</p>
-              </div>
-              <div>
-                <p>{data.lga}</p>
-              </div>
-              <div>
-                <p>120</p>
-              </div>
-            </div>
-          );
-        })}
+        {/* {localGovernmentResult?.map((data, index) => { */}
+        {/* const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc"; */}
+        {/* return ( */}
+        <div className="polling_units_table_inner">
+          <div>
+            <p>Babajide Olusola Sanwo-Olu</p>
+          </div>
+          <div>
+            <p>APC</p>
+          </div>
+          <div>
+            <p>{APC || `Yet to be uploaded`}</p>
+          </div>
+          <div>
+            <p>
+              {((APC / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+            </p>
+          </div>
+        </div>
+
+        <div className="polling_units_table_inner">
+          <div>
+            <p>Gbadebo Rhodes-Vivour</p>
+          </div>
+          <div>
+            <p>LP</p>
+          </div>
+          <div>
+            <p>{LP || `Yet to be uploaded`}</p>
+          </div>
+          <div>
+            <p>
+              {((LP / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+            </p>
+          </div>
+        </div>
+
+        <div className="polling_units_table_inner">
+          <div>
+            <p>Abdul-Azeez Olajide Adediran</p>
+          </div>
+          <div>
+            <p>PDP</p>
+          </div>
+          <div>
+            <p>{PDP || `Yet to be uploaded`}</p>
+          </div>
+          <div>
+            <p>
+              {((PDP / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
