@@ -126,7 +126,7 @@ function ResultByLga() {
             <p>Babajide Olusola Sanwo-Olu</p>
           </div>
           <div>
-            <p>APC</p>
+            <p style={{ color: "#DB6758" }}>APC</p>
           </div>
           <div>
             <p>{Number(APC).toLocaleString() || `Yet to be uploaded`}</p>
@@ -144,7 +144,7 @@ function ResultByLga() {
             <p>Gbadebo Rhodes-Vivour</p>
           </div>
           <div>
-            <p>LP</p>
+            <p style={{ color: "#1D90E9" }}>LP</p>
           </div>
           <div>
             <p>{Number(LP).toLocaleString() || `Yet to be uploaded`}</p>
@@ -162,7 +162,7 @@ function ResultByLga() {
             <p>Abdul-Azeez Olajide Adediran</p>
           </div>
           <div>
-            <p>PDP</p>
+            <p style={{ color: "#4CA080" }}>PDP</p>
           </div>
           <div>
             <p>{Number(PDP).toLocaleString() || `Yet to be uploaded`}</p>
