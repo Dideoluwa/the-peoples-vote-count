@@ -737,9 +737,36 @@
   background-color: #f3f4f6;
   display: flex;
   flex-direction: column;
+
+  .banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  @media only screen and (max-width: 540px) {
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: black;
+      color: white;
+      padding: 5px 5px;
+      z-index: 10000000;
+      text-align: center;
+    }
+  }
+
   .header {
     display: flex;
     margin: 18px 32px;
+    margin-top: 100px;
     justify-content: space-between;
     .homepage_header_inner {
       flex: 1;
@@ -805,6 +832,7 @@
   @media only screen and (max-width: 920px) {
     .header {
       margin: 12px 10px;
+      margin-top: 80px;
     }
   }
   .body {

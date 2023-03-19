@@ -239,6 +239,13 @@ const PageLayout = () => {
       {/* main page for election */}
       {isOpen && (
         <div className="election_table">
+          <div className="banner">
+            <p>
+              The information published on this website or on any other assets
+              managed by The People’s Count is not official election results.
+            </p>
+          </div>
+          Î
           <div className="header">
             <div className="homepage_header_inner">
               <div className="homepage_header_wrapper">
