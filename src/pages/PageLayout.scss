@@ -905,10 +905,13 @@
             width: 15%;
             display: flex;
             align-items: center;
-            z-index: 1000;
+            z-index: 100000;
             img {
               width: 100%;
             }
+          }
+          p {
+            z-index: 10000;
           }
         }
         @media only screen and (max-width: 540px) {
@@ -925,14 +928,14 @@
       }
     }
     .body_table {
-      margin: 48px auto;
+      margin: 48px 100px;
       .body_table_header {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 24px 24px 0px;
 
-        width: 1120px;
+        // width: 1120px;
         height: 72px;
 
         /* Base/White */

@@ -1,0 +1,209 @@
+.polling_units_table_cover {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: scroll;
+    font-family: 'General sans light';
+}
+
+.polling_units_table_inner {
+    display: flex;
+    align-items: center;
+    padding: 22px 24px;
+    gap: 12px;
+    background: #FCFCFC;
+    border-bottom: 0.5px solid #EDEEF0;
+    justify-content: space-between;
+    /* text-align: center; */
+}
+
+.polling_units_table_inner3 {
+    display: flex;
+    align-items: center;
+    padding: 22px 24px;
+    gap: 12px;
+    background: #FCFCFC;
+    border-bottom: 0.5px solid #EDEEF0;
+    justify-content: space-between;
+    /* text-align: center; */
+}
+
+.polling_units_table_inner3 div p {
+    font-family: 'General Sans light';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #7A7A7B;
+
+}
+
+.polling_units_table_inner3 div:nth-child(1) {
+    flex: 1;
+    background-color: red;
+    max-width: 30%;
+}
+
+.polling_units_table_inner3 div:nth-child(2) {
+    flex: 1;
+    background-color: red;
+    max-width: 30%;
+}
+
+.polling_units_table_inner3 div:nth-child(3) {
+    flex: 2;
+    max-width: 20%;
+}
+
+.polling_units_table_inner:nth-child(2),
+.polling_units_table_inner:nth-child(4) {
+    background-color: white;
+}
+
+.polling_units_table_inner div {
+    flex: 1;
+}
+
+.polling_units_table_inner div p {
+    font-family: 'General Sans light';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #7A7A7B;
+
+}
+
+
+.polling_units_table_inner div:nth-child(1) {
+    max-width: 80%;
+    text-align: start;
+}
+
+.polling_units_table_inner div:nth-child(2) {
+    max-width: 15%;
+}
+
+.polling_units_table_cover {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    overflow-x: scroll;
+}
+
+.polling_units_table_inner2 {
+    display: flex;
+    align-items: center;
+    padding: 22px 24px;
+    gap: 12px;
+    background: #FCFCFC;
+    border-bottom: 0.5px solid #EDEEF0;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.polling_units_table_inner2 div:nth-child(1) {
+    display: flex;
+    flex: 1;
+    max-width: 40%;
+    text-align: start;
+}
+
+.polling_units_table_inner2 div:nth-child(2) {
+    max-width: 15%;
+    text-align: start;
+}
+
+.polling_units_table_inner2 div {
+    text-align: start;
+}
+
+
+.polling_units_table_inner2 div:nth-child(1) {
+    flex: 1;
+    max-width: 15%;
+}
+
+.polling_units_table_inner2 div:nth-child(2) {
+    flex: 1;
+    max-width: 10%;
+}
+
+/* .polling_units_table_inner2 div:nth-child(2),
+.polling_units_table_inner2 div:nth-child(3),
+.polling_units_table_inner2 div:nth-child(4),
+.polling_units_table_inner2 div:nth-child(5),
+.polling_units_table_inner2 div:nth-child(4),
+.polling_units_table_inner2 div:nth-child(5) {
+    flex: 1;
+    max-width: 30%;
+} */
+
+.polling_units_table_inner2 div p {
+    font-family: 'General Sans light';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #7A7A7B;
+
+}
+
+
+@media only screen and (max-width: 920px) {
+    .polling_units_table_inner {
+        width: 150%;
+    }
+
+    .polling_units_table_inner div:nth-child(1) {
+        flex: 1;
+        max-width: 30%;
+        text-align: start;
+    }
+
+    .polling_units_table_inner div:nth-child(2) {
+        flex: 1;
+        max-width: 30%;
+    }
+
+    .polling_units_table_inner div p {
+        font-size: 12px;
+    }
+
+    .polling_units_table_inner2 {
+        width: 200%;
+    }
+
+    .polling_units_table_inner2 div p {
+        font-size: 12px;
+    }
+
+    .polling_units_table_inner2 div:nth-child(1) {
+        flex: 1;
+        max-width: 25%;
+    }
+
+    .polling_units_table_inner2 div:nth-child(2) {
+        flex: 1;
+        max-width: 20%;
+    }
+}

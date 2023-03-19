@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultsBypollingUnit.scss";
+import styles from "./Result.module.css";
 
 const lagosLGAs = [
   "Filter LGA:",
@@ -21,7 +22,7 @@ const lagosLGAs = [
   "Lagos Mainland",
   "Mushin",
   "Ojo",
-  "Oshodi-Isolo",
+  "Oshodi/Isolo",
   "Shomolu",
   "Surulere",
 ];
@@ -50,12 +51,9 @@ function ResultByPollingUnit() {
 
   useEffect(() => {
     axios
-      .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
-        {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-        }
-      )
+      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results", {
+        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+      })
       .then((response) => {
         setPeople(response.data.records);
       })
@@ -116,8 +114,8 @@ function ResultByPollingUnit() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner">
+      <div className={styles.polling_units_table_cover}>
+        <div className={styles.polling_units_table_inner2}>
           <div>
             <p>POLLING UNIT</p>
           </div>
@@ -146,7 +144,7 @@ function ResultByPollingUnit() {
           return (
             <div
               style={{ backgroundColor: color }}
-              className="polling_units_table_inner"
+              className={styles.polling_units_table_inner2}
             >
               <div>
                 <p>{data.fields["PU Address"]}</p>

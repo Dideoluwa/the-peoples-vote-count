@@ -55,12 +55,9 @@ const PageLayout = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
-        {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-        }
-      )
+      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results", {
+        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+      })
       .then((response) => {
         setPeople(response.data.records);
       })

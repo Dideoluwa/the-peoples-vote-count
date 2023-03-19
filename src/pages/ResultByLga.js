@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultByLga.scss";
+import styles from "./Result.module.css";
 
 const lagosLGAs = [
   "Filter LGA:",
@@ -11,7 +12,7 @@ const lagosLGAs = [
   "Apapa",
   "Badagry",
   "Epe",
-  "Eti-Osa",
+  "ETI-OSA",
   "Ibeju-Lekki",
   "Ifako-Ijaiye",
   "Ikeja",
@@ -21,7 +22,7 @@ const lagosLGAs = [
   "Lagos Mainland",
   "Mushin",
   "Ojo",
-  "Oshodi-Isolo",
+  "Oshodi/Isolo",
   "Shomolu",
   "Surulere",
 ];
@@ -38,12 +39,9 @@ function ResultByLga() {
 
   useEffect(() => {
     axios
-      .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
-        {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-        }
-      )
+      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results", {
+        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+      })
       .then((response) => {
         setPeople(response.data.records);
       })
@@ -105,8 +103,8 @@ function ResultByLga() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner">
+      <div className={styles.polling_units_table_cover}>
+        <div className={styles.polling_units_table_inner}>
           <div>
             <p>Candidate</p>
           </div>
@@ -123,7 +121,7 @@ function ResultByLga() {
         {/* {localGovernmentResult?.map((data, index) => { */}
         {/* const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc"; */}
         {/* return ( */}
-        <div className="polling_units_table_inner">
+        <div className={styles.polling_units_table_inner}>
           <div>
             <p>Babajide Olusola Sanwo-Olu</p>
           </div>
@@ -140,7 +138,7 @@ function ResultByLga() {
           </div>
         </div>
 
-        <div className="polling_units_table_inner">
+        <div className={styles.polling_units_table_inner}>
           <div>
             <p>Gbadebo Rhodes-Vivour</p>
           </div>
@@ -157,7 +155,7 @@ function ResultByLga() {
           </div>
         </div>
 
-        <div className="polling_units_table_inner">
+        <div className={styles.polling_units_table_inner}>
           <div>
             <p>Abdul-Azeez Olajide Adediran</p>
           </div>
