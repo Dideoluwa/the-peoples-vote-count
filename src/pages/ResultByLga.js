@@ -129,11 +129,12 @@ function ResultByLga() {
             <p>APC</p>
           </div>
           <div>
-            <p>{APC || `Yet to be uploaded`}</p>
+            <p>{Number(APC).toLocaleString() || `Yet to be uploaded`}</p>
           </div>
           <div>
             <p>
-              {((APC / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+              {((APC / TOTAL || 0) * 100)?.toFixed(2) + "%" ||
+                `Yet to be uploaded`}
             </p>
           </div>
         </div>
@@ -146,11 +147,12 @@ function ResultByLga() {
             <p>LP</p>
           </div>
           <div>
-            <p>{LP || `Yet to be uploaded`}</p>
+            <p>{Number(LP).toLocaleString() || `Yet to be uploaded`}</p>
           </div>
           <div>
             <p>
-              {((LP / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+              {((LP / TOTAL || 0) * 100)?.toFixed(2) + "%" ||
+                `Yet to be uploaded`}
             </p>
           </div>
         </div>
@@ -163,11 +165,12 @@ function ResultByLga() {
             <p>PDP</p>
           </div>
           <div>
-            <p>{PDP || `Yet to be uploaded`}</p>
+            <p>{Number(PDP).toLocaleString() || `Yet to be uploaded`}</p>
           </div>
           <div>
             <p>
-              {((PDP / TOTAL) * 100)?.toFixed(2) + "%" || `Yet to be uploaded`}
+              {((PDP / TOTAL || 0) * 100)?.toFixed(2) + "%" ||
+                `Yet to be uploaded`}
             </p>
           </div>
         </div>
