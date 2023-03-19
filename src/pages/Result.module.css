@@ -147,7 +147,8 @@
 .polling_units_table_inner2 div:nth-child(4),
 .polling_units_table_inner2 div:nth-child(5),
 .polling_units_table_inner2 div:nth-child(6),
-.polling_units_table_inner2 div:nth-child(7) {
+.polling_units_table_inner2 div:nth-child(7),
+.polling_units_table_inner2 div:nth-child(8) {
     display: flex;
     justify-content: flex-start;
     flex: 1;
@@ -171,6 +172,13 @@
 
 }
 
+.polling_units_table_inner2 div a {
+    color: #7A7A7B;
+}
+
+.polling_units_table_inner div a {
+    color: #7A7A7B;
+}
 
 @media only screen and (max-width: 920px) {
     .polling_units_table_inner {
@@ -208,5 +216,13 @@
     .polling_units_table_inner2 div:nth-child(2) {
         flex: 1;
         max-width: 20%;
+    }
+
+    .polling_units_table_inner div a {
+        font-size: 12px;
+    }
+
+    .polling_units_table_inner2 div a {
+        font-size: 12px;
     }
 }

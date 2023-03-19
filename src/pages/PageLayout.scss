@@ -745,8 +745,7 @@
     width: 100%;
     background-color: black;
     color: white;
-    // background-color: #f3f4f6;
-    // color: rgb(255, 7, 7);
+    z-index: 1000000000000;
     padding: 20px;
     text-align: center;
   }
@@ -757,9 +756,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      // background-color: #f3f4f6;
       background-color: rgba(0, 0, 0, 0.998);
-      // color: rgb(255, 7, 7);
       color: white;
       font-size: 12px;
       padding: 5px 5px;

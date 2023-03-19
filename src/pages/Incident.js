@@ -4,7 +4,7 @@ import "./ResultByLga.scss";
 import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "ALL",
+  "Filter results",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -55,7 +55,7 @@ function Incident() {
   }, [people]);
 
   useEffect(() => {
-    if (lga === "ALL") {
+    if (lga === "Filter results") {
       setLga("");
     }
   }, [lga]);
@@ -89,6 +89,10 @@ function Incident() {
           <div>
             <p>Type</p>
           </div>
+
+          <div>
+            <p>Video</p>
+          </div>
           <div>
             <p>LGA</p>
           </div>
@@ -108,6 +112,12 @@ function Incident() {
             >
               <div>
                 <p>{data.fields.Type}</p>
+              </div>
+
+              <div>
+                <a href={data.fields.Media} target="_blank" rel="noreferrer">
+                  Click Link
+                </a>
               </div>
               <div>
                 <p>{data.fields.LGA}</p>

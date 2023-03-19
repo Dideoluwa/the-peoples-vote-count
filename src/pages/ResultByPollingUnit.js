@@ -4,7 +4,7 @@ import "./ResultsBypollingUnit.scss";
 import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "Filter LGA:",
+  "Filter results",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -28,7 +28,7 @@ const lagosLGAs = [
 ];
 
 function ResultByPollingUnit() {
-  const [lga, setLga] = useState("Agege");
+  const [lga, setLga] = useState("");
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState([]);
   const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
@@ -43,8 +43,14 @@ function ResultByPollingUnit() {
   }, [people]);
 
   useEffect(() => {
+    if (lga === "Filter results") {
+      setLga("");
+    }
+  }, [lga]);
+
+  useEffect(() => {
     const resultByLga = filter?.filter((data, index) => {
-      return data?.fields?.LGA?.toLowerCase() === lga?.toLowerCase();
+      return data?.fields?.LGA?.toLowerCase().includes(lga?.toLowerCase());
     });
     setLocalGovernmentResult(resultByLga);
   }, [filter, lga]);
@@ -125,6 +131,11 @@ function ResultByPollingUnit() {
           <div>
             <p>LGA</p>
           </div>
+
+          <div>
+            <p>Result</p>
+          </div>
+
           <div>
             <p>LP</p>
           </div>
@@ -155,6 +166,17 @@ function ResultByPollingUnit() {
               <div>
                 <p>{data.fields.LGA}</p>
               </div>
+
+              <div>
+                <a
+                  href={data.fields["Result Sheet"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Click Link
+                </a>
+              </div>
+
               <div>
                 <p>{data.fields.LP}</p>
               </div>
