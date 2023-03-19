@@ -180,6 +180,26 @@
     color: #7A7A7B;
 }
 
+.button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 24px;
+    gap: 12px;
+}
+
+.button button {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 8px;
+    color: #7A7A7B;
+    background: #FFFFFF;
+    border: 1px solid #C8D0D6;
+    border-radius: 6px;
+}
+
 @media only screen and (max-width: 920px) {
     .polling_units_table_inner {
         width: 150%;
@@ -216,6 +236,7 @@
     .polling_units_table_inner2 div:nth-child(2) {
         flex: 1;
         max-width: 20%;
+        font-size: 12px;
     }
 
     .polling_units_table_inner div a {
@@ -223,6 +244,30 @@
     }
 
     .polling_units_table_inner2 div a {
+        font-size: 12px;
+    }
+
+    .button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 18px;
+        gap: 12px;
+    }
+
+    .button button {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 16px;
+        gap: 8px;
+        color: #7A7A7B;
+        background: #FFFFFF;
+        border: 1px solid #C8D0D6;
+        border-radius: 6px;
+    }
+
+    .button p {
         font-size: 12px;
     }
 }

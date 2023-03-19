@@ -4,7 +4,7 @@ import "./ResultsBypollingUnit.scss";
 import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "Filter results",
+  "Filter results by LGA",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -34,6 +34,8 @@ function ResultByPollingUnit() {
   const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
   const [filteredResults, setFilteredResults] = useState(localGovernmentResult);
   const [search, setSearch] = useState("");
+  const [sortedData, setSortedData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const filterResultByLga = people?.filter((data, index) => {
@@ -43,7 +45,7 @@ function ResultByPollingUnit() {
   }, [people]);
 
   useEffect(() => {
-    if (lga === "Filter results") {
+    if (lga === "Filter results by LGA") {
       setLga("");
     }
   }, [lga]);
@@ -81,6 +83,27 @@ function ResultByPollingUnit() {
     );
     setFilteredResults(filterResults);
   }, [search, localGovernmentResult]);
+
+  useEffect(() => {
+    const sorted = [...filteredResults].sort((a, b) => {
+      return a.fields["PU Address"].localeCompare(b.fields["PU Address"]);
+    });
+    setSortedData(sorted);
+  }, [filteredResults]);
+
+  const totalPages = Math.ceil(sortedData.length / 10);
+
+  const startIndex = (currentPage - 1) * 10;
+  const endIndex = startIndex + 10;
+  const currentData = sortedData?.slice(startIndex, endIndex);
+
+  let disable = currentPage >= totalPages ? "disabled" : "";
+  let disable2 = currentPage <= 1 ? "disabled" : "";
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="head">
       <div className="heading">
@@ -150,7 +173,7 @@ function ResultByPollingUnit() {
             <p>TOTAL</p>
           </div>
         </div>
-        {filteredResults?.map((data, index) => {
+        {currentData?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
           return (
             <div
@@ -192,6 +215,25 @@ function ResultByPollingUnit() {
             </div>
           );
         })}
+        <div className={styles.button}>
+          <button
+            disabled={disable2}
+            onClick={() => handlePageClick(currentPage - 1)}
+          >
+            Previous Page
+          </button>
+
+          <p>
+            {currentPage} of {totalPages}
+          </p>
+
+          <button
+            disabled={disable}
+            onClick={() => handlePageClick(currentPage + 1)}
+          >
+            Next Page
+          </button>
+        </div>
       </div>
     </div>
   );
