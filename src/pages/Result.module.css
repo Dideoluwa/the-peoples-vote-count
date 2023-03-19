@@ -68,6 +68,8 @@
 
 .polling_units_table_inner div {
     flex: 1;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .polling_units_table_inner div p {
@@ -122,13 +124,10 @@
     text-align: start;
 }
 
-.polling_units_table_inner2 div:nth-child(2) {
-    max-width: 15%;
-    text-align: start;
-}
-
 .polling_units_table_inner2 div {
     text-align: start;
+    display: flex;
+    justify-content: flex-start;
 }
 
 
@@ -138,19 +137,23 @@
 }
 
 .polling_units_table_inner2 div:nth-child(2) {
+    display: flex;
+    justify-content: flex-start;
     flex: 1;
     max-width: 10%;
 }
 
-/* .polling_units_table_inner2 div:nth-child(2),
 .polling_units_table_inner2 div:nth-child(3),
 .polling_units_table_inner2 div:nth-child(4),
 .polling_units_table_inner2 div:nth-child(5),
-.polling_units_table_inner2 div:nth-child(4),
-.polling_units_table_inner2 div:nth-child(5) {
+.polling_units_table_inner2 div:nth-child(6),
+.polling_units_table_inner2 div:nth-child(7) {
+    display: flex;
+    justify-content: flex-start;
     flex: 1;
-    max-width: 30%;
-} */
+    max-width: 10%;
+
+}
 
 .polling_units_table_inner2 div p {
     font-family: 'General Sans light';
