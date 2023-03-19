@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultByLga.scss";
+import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "Filter LGA:",
+  "ALL",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -21,27 +22,24 @@ const lagosLGAs = [
   "Lagos Mainland",
   "Mushin",
   "Ojo",
-  "Oshodi-Isolo",
+  "Oshodi/Isolo",
   "Shomolu",
   "Surulere",
 ];
 
 function Incident() {
-  const [lga, setLga] = useState("Agege");
+  const [lga, setLga] = useState("");
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState([]);
   const [localGovernmentResult, setLocalGovernmentResult] = useState(filter);
 
   useEffect(() => {
     axios
-      .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Incidents?maxRecords=3&view=Grid%20view",
-        {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-        }
-      )
+      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Incidents", {
+        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+      })
       .then((response) => {
-        // console.log(response.data.records);
+        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
@@ -57,8 +55,14 @@ function Incident() {
   }, [people]);
 
   useEffect(() => {
+    if (lga === "ALL") {
+      setLga("");
+    }
+  }, [lga]);
+
+  useEffect(() => {
     const resultByLga = filter?.filter((data, index) => {
-      return data?.fields?.LGA?.toLowerCase() === lga?.toLowerCase();
+      return data?.fields?.LGA?.toLowerCase().includes(lga?.toLowerCase());
     });
     setLocalGovernmentResult(resultByLga);
   }, [filter, lga]);
@@ -80,16 +84,16 @@ function Incident() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner2">
+      <div className={styles.polling_units_table_cover}>
+        <div className={styles.polling_units_table_inner}>
           <div>
             <p>Type</p>
           </div>
           <div>
-            <p>Caption</p>
+            <p>LGA</p>
           </div>
           <div>
-            <p>LGA</p>
+            <p>Caption</p>
           </div>
           <div>
             <p>PU Address</p>
@@ -100,16 +104,16 @@ function Incident() {
           return (
             <div
               style={{ backgroundColor: color }}
-              className="polling_units_table_inner2"
+              className={styles.polling_units_table_inner}
             >
               <div>
                 <p>{data.fields.Type}</p>
               </div>
               <div>
-                <p>{data?.fields.Caption || `No caption Available`}</p>
+                <p>{data.fields.LGA}</p>
               </div>
               <div>
-                <p>{data.fields.LGA}</p>
+                <p>{data?.fields.Caption || `No caption Available`}</p>
               </div>
               <div>
                 <p>{data.fields["PU Address"]}</p>
