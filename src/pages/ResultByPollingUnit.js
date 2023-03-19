@@ -217,25 +217,25 @@ function ResultByPollingUnit() {
             </div>
           );
         })}
-        <div className={styles.button}>
-          <button
-            disabled={disable2}
-            onClick={() => handlePageClick(currentPage - 1)}
-          >
-            Previous Page
-          </button>
+      </div>
+      <div className={styles.button}>
+        <button
+          disabled={disable2}
+          onClick={() => handlePageClick(currentPage - 1)}
+        >
+          Previous Page
+        </button>
 
-          <p>
-            {currentPage} of {totalPages}
-          </p>
+        <p>
+          {currentPage} of {totalPages}
+        </p>
 
-          <button
-            disabled={disable}
-            onClick={() => handlePageClick(currentPage + 1)}
-          >
-            Next Page
-          </button>
-        </div>
+        <button
+          disabled={disable}
+          onClick={() => handlePageClick(currentPage + 1)}
+        >
+          Next Page
+        </button>
       </div>
     </div>
   );
