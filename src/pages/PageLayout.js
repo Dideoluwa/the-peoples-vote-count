@@ -245,7 +245,6 @@ const PageLayout = () => {
               managed by The People’s Count is not official election results.
             </p>
           </div>
-          Î
           <div className="header">
             <div className="homepage_header_inner">
               <div className="homepage_header_wrapper">
@@ -280,7 +279,7 @@ const PageLayout = () => {
           <div className="body">
             <div className="body_head">
               <h2>Lagos Governorship Election</h2>
-              <p>total Valid votes {TOTAL}</p>
+              <p>total Valid votes {Number(TOTAL).toLocaleString()}</p>
             </div>
             <div className="body_inner">
               <div>
@@ -325,7 +324,7 @@ const PageLayout = () => {
                   <div
                     style={{
                       backgroundColor: "#E4F1EC",
-                      width: `${((PDP / TOTAL) * 100).toFixed(2)}%`,
+                      width: `${((PDP / TOTAL) * 100 + 10).toFixed(2)}%`,
                     }}
                     className="body_inner_chart_guage"
                   ></div>
@@ -342,7 +341,13 @@ const PageLayout = () => {
               </div>
 
               <div className="body_inner_image">
-                <img src={voters} alt="people" />
+                <a
+                  href="https://twitter.com/thepeoplescount/media"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={voters} alt="people" />
+                </a>
               </div>
             </div>
             <div className="body_table">
