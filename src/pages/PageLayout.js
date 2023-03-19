@@ -278,7 +278,7 @@ const PageLayout = () => {
           </div>
           <div className="body">
             <div className="body_head">
-              <h2>Lagos Governorship Election</h2>
+              <h2>2023 Lagos Governorship Election</h2>
               <p>total Valid votes {Number(TOTAL).toLocaleString() || 0}</p>
             </div>
             <div className="body_inner">
@@ -299,7 +299,7 @@ const PageLayout = () => {
 
                     <p>
                       {Number(LP).toLocaleString() || 0} votes{" "}
-                      {((LP / TOTAL || 0) * 100).toFixed(2)}%
+                      {((LP / TOTAL || 0) * 100).toFixed(0)}%
                     </p>
                   </div>
                 </div>
@@ -317,8 +317,8 @@ const PageLayout = () => {
                     </div>
 
                     <p>
-                      {Number(APC).toLocaleString() || 0} votes
-                      {((APC / TOTAL || 0) * 100).toFixed(2)}%
+                      {Number(APC).toLocaleString() || 0} votes{" "}
+                      {((APC / TOTAL || 0) * 100).toFixed(0)}%
                     </p>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ const PageLayout = () => {
 
                     <p>
                       {Number(PDP).toLocaleString() || 0} votes{" "}
-                      {((PDP / TOTAL || 0) * 100).toFixed(2)}%
+                      {((PDP / TOTAL || 0) * 100).toFixed(0)}%
                     </p>
                   </div>
                 </div>

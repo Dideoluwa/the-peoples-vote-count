@@ -181,13 +181,15 @@ function ResultByPollingUnit() {
               className={styles.polling_units_table_inner2}
             >
               <div>
-                <p>{data.fields["PU Address"]}</p>
+                <p style={{ wordBreak: "break-all" }}>
+                  {data.fields["PU Address"]}
+                </p>
               </div>
               <div>
-                <p>{data.fields.Ward}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.Ward}</p>
               </div>
               <div>
-                <p>{data.fields.LGA}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
               </div>
 
               <div>

@@ -88,7 +88,6 @@
 
 }
 
-
 .polling_units_table_inner div:nth-child(1) {
     max-width: 80%;
     text-align: start;
@@ -128,6 +127,7 @@
     text-align: start;
     display: flex;
     justify-content: flex-start;
+    /* word-break: break-all; */
 }
 
 
@@ -162,7 +162,6 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
-
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;

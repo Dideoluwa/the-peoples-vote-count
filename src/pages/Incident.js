@@ -141,7 +141,7 @@ function Incident() {
                 </a>
               </div>
               <div>
-                <p>{data.fields.LGA}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
               </div>
               <div>
                 <p>{data?.fields.Caption || `No caption Available`}</p>
