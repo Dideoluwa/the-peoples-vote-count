@@ -37,9 +37,12 @@ function Incident() {
 
   useEffect(() => {
     axios
-      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Incidents", {
-        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-      })
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_KEY}/Incidents`,
+        {
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
+        }
+      )
       .then((response) => {
         setPeople(response.data.records);
       })

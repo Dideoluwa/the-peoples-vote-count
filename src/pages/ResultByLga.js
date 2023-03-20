@@ -39,9 +39,12 @@ function ResultByLga() {
 
   useEffect(() => {
     axios
-      .get("https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results", {
-        headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
-      })
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_KEY}/Results`,
+        {
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
+        }
+      )
       .then((response) => {
         setPeople(response.data.records);
       })
