@@ -818,14 +818,9 @@
           font-weight: 500;
           font-size: 14px;
           line-height: 24px;
-          /* identical to box height, or 171% */
-
           display: flex;
           align-items: center;
           text-align: right;
-
-          /* General/White */
-
           color: #ffffff;
         }
       }
@@ -957,6 +952,28 @@
     }
     .body_table {
       margin: 48px 100px;
+
+      .bottom_nav {
+        color: black;
+        text-align: center;
+        margin-top: 30px;
+        width: 100%;
+
+        p {
+          font-style: italic;
+          text-align: left;
+        }
+      }
+      @media only screen and (max-width: 920px) {
+        .bottom_nav {
+          color: black;
+          text-align: center;
+          margin-top: 20px;
+          font-size: 12px;
+          padding: 5px 12px;
+        }
+      }
+
       .body_table_header {
         display: flex;
         flex-direction: row;

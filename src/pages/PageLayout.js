@@ -281,9 +281,7 @@ const PageLayout = () => {
           </div>
           <div className="body">
             <div className="body_head">
-              <h2>2023 Lagos Governorship Election</h2>
-              <p>total Polling Units Reporting: {filter.length}</p>
-              <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
+              <h2>2023 Lagos Governorship Election*</h2>
             </div>
             <div className="body_inner">
               <div>
@@ -389,6 +387,14 @@ const PageLayout = () => {
               </div>
               <div className="outlet">
                 <Outlet />
+              </div>
+              <div className="bottom_nav">
+                <p>
+                  *The count is continuously updated as polling unit sheets are
+                  uploaded, reviewed, and validated. Check back regularly for
+                  the latest count, keep uploading results, and encourage others
+                  to do so as well. #CountEveryVote #EveryVoteCounts.
+                </p>
               </div>
             </div>
           </div>
