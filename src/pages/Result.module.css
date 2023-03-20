@@ -67,7 +67,6 @@
 }
 
 .polling_units_table_inner div {
-    flex: 1;
     display: flex;
     justify-content: flex-start;
 }
@@ -89,12 +88,36 @@
 }
 
 .polling_units_table_inner div:nth-child(1) {
-    max-width: 80%;
+    flex: 1;
+    max-width: 25%;
     text-align: start;
+    display: flex;
+    justify-content: flex-start;
 }
 
-.polling_units_table_inner div:nth-child(2) {
-    max-width: 15%;
+.polling_units_table_inner div:nth-child(2),
+.polling_units_table_inner div:nth-child(3) {
+    flex: 1;
+    max-width: 10%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner div:nth-child(4) {
+    flex: 1;
+    max-width: 20%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner div:nth-child(5) {
+    flex: 1;
+    max-width: 20%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .polling_units_table_cover {
@@ -133,18 +156,25 @@
 
 .polling_units_table_inner2 div:nth-child(1) {
     flex: 1;
-    max-width: 15%;
+    max-width: 25%;
 }
 
 .polling_units_table_inner2 div:nth-child(2) {
     display: flex;
     justify-content: flex-start;
     flex: 1;
-    max-width: 10%;
+    max-width: 20%;
 }
 
 .polling_units_table_inner2 div:nth-child(3),
-.polling_units_table_inner2 div:nth-child(4),
+.polling_units_table_inner2 div:nth-child(4) {
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+    max-width: 15%;
+
+}
+
 .polling_units_table_inner2 div:nth-child(5),
 .polling_units_table_inner2 div:nth-child(6),
 .polling_units_table_inner2 div:nth-child(7),
@@ -152,8 +182,7 @@
     display: flex;
     justify-content: flex-start;
     flex: 1;
-    max-width: 10%;
-
+    max-width: 5%;
 }
 
 .polling_units_table_inner2 div p {
@@ -201,18 +230,40 @@
 
 @media only screen and (max-width: 920px) {
     .polling_units_table_inner {
-        width: 150%;
+        width: 200%;
     }
 
     .polling_units_table_inner div:nth-child(1) {
         flex: 1;
-        max-width: 30%;
+        max-width: 35%;
         text-align: start;
+        display: flex;
+        justify-content: flex-start;
     }
 
-    .polling_units_table_inner div:nth-child(2) {
+    .polling_units_table_inner div:nth-child(2),
+    .polling_units_table_inner div:nth-child(3) {
         flex: 1;
-        max-width: 30%;
+        max-width: 15%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner div:nth-child(4) {
+        flex: 1;
+        max-width: 25%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner div:nth-child(5) {
+        flex: 1;
+        max-width: 15%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
     }
 
     .polling_units_table_inner div p {
@@ -229,13 +280,39 @@
 
     .polling_units_table_inner2 div:nth-child(1) {
         flex: 1;
-        max-width: 25%;
+        max-width: 30%
     }
 
     .polling_units_table_inner2 div:nth-child(2) {
         flex: 1;
         max-width: 20%;
         font-size: 12px;
+    }
+
+    .polling_units_table_inner2 div:nth-child(3) {
+        display: flex;
+        justify-content: flex-start;
+        flex: 1;
+        max-width: 17%;
+
+    }
+
+    .polling_units_table_inner2 div:nth-child(4) {
+        display: flex;
+        justify-content: flex-start;
+        flex: 1;
+        max-width: 10%;
+
+    }
+
+    .polling_units_table_inner2 div:nth-child(5),
+    .polling_units_table_inner2 div:nth-child(6),
+    .polling_units_table_inner2 div:nth-child(7),
+    .polling_units_table_inner2 div:nth-child(8) {
+        display: flex;
+        justify-content: flex-start;
+        flex: 1;
+        max-width: 5%;
     }
 
     .polling_units_table_inner div a {

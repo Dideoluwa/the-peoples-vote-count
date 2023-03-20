@@ -279,7 +279,8 @@ const PageLayout = () => {
           <div className="body">
             <div className="body_head">
               <h2>2023 Lagos Governorship Election</h2>
-              <p>total Valid votes {Number(TOTAL).toLocaleString() || 0}</p>
+              <p>total Polling Units Reporting: {filter.length}</p>
+              <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
             </div>
             <div className="body_inner">
               <div>

@@ -70,7 +70,7 @@ function Incident() {
 
   useEffect(() => {
     const sorted = [...localGovernmentResult].sort((a, b) => {
-      return a.fields["PU Address"].localeCompare(b.fields["PU Address"]);
+      return a.fields.Type.localeCompare(b.fields.Type);
     });
     setSortedData(sorted);
   }, [localGovernmentResult]);
