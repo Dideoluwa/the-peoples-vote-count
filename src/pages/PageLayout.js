@@ -5,15 +5,19 @@ import ig from "../assets/ig.png";
 import lp from "../assets/lp.png";
 import apc from "../assets/apc.png";
 import pdp from "../assets/pdp.png";
-import others from "../assets/others.png";
 import voters from "../assets/people.png";
 import "./PageLayout.scss";
 import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
 
 const PageLayout = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [APC, setTotalApc] = useState(null);
+  const [PDP, setTotalPdp] = useState(null);
+  const [LP, setTotalLp] = useState(null);
+  const [TOTAL, setTotal] = useState(null);
   const lgaChangeHandler = () => {
     setIsOpen(null);
   };
@@ -52,13 +56,12 @@ const PageLayout = () => {
   useEffect(() => {
     axios
       .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_KEY}/Results`,
         {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
         }
       )
       .then((response) => {
-        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
@@ -66,7 +69,35 @@ const PageLayout = () => {
       });
   }, []);
 
-  console.log(people);
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    const totalApc = filter?.reduce((index, data) => {
+      return index + data?.fields?.APC;
+    }, 0);
+    setTotalApc(totalApc);
+
+    const totalPdp = filter?.reduce((index, data) => {
+      return index + data?.fields?.PDP;
+    }, 0);
+    setTotalPdp(totalPdp);
+
+    const totalLp = filter?.reduce((index, data) => {
+      return index + data?.fields?.LP;
+    }, 0);
+    setTotalLp(totalLp);
+
+    const total = filter?.reduce((index, data) => {
+      return index + data?.fields["Total Valid Votes"];
+    }, 0);
+    setTotal(total);
+  }, [filter]);
+
   // console.log(countdown);
 
   // function formatNumber(num) {
@@ -211,6 +242,12 @@ const PageLayout = () => {
       {/* main page for election */}
       {isOpen && (
         <div className="election_table">
+          <div className="banner">
+            <p>
+              The information published on this website or on any other assets
+              managed by The People’s Count is not official election results.
+            </p>
+          </div>
           <div className="header">
             <div className="homepage_header_inner">
               <div className="homepage_header_wrapper">
@@ -238,21 +275,23 @@ const PageLayout = () => {
                   />
                 </svg>
 
-                <p> Submit your vote</p>
+                <p> Upload your result</p>
               </div>
             </a>
           </div>
           <div className="body">
             <div className="body_head">
-              <h2>Lagos Governorship Election</h2>
-              <p>total Valid votes 900,000</p>
+              <h2>2023 Lagos Governorship Election*</h2>
             </div>
             <div className="body_inner">
               <div>
                 {" "}
                 <div className="body_inner_chart">
                   <div
-                    style={{ backgroundColor: "#1d91e93a", width: "70%" }}
+                    style={{
+                      backgroundColor: "#1d91e93a",
+                      width: `${((LP / TOTAL) * 100).toFixed(2)}%`,
+                    }}
                     className="body_inner_chart_guage"
                   ></div>
                   <div className="body_inner_chart_guage_text">
@@ -260,12 +299,18 @@ const PageLayout = () => {
                       <img src={lp} alt="logo" />
                     </div>
 
-                    <p>630,000 votes 70%</p>
+                    <p>
+                      {Number(LP).toLocaleString() || 0} votes{" "}
+                      {((LP / TOTAL || 0) * 100).toFixed(0)}%
+                    </p>
                   </div>
                 </div>
                 <div className="body_inner_chart">
                   <div
-                    style={{ backgroundColor: "#FBEDEC", width: "15%" }}
+                    style={{
+                      backgroundColor: "#FBEDEC",
+                      width: `${((APC / TOTAL) * 100).toFixed(2)}%`,
+                    }}
                     className="body_inner_chart_guage"
                   ></div>
                   <div className="body_inner_chart_guage_text">
@@ -273,12 +318,18 @@ const PageLayout = () => {
                       <img src={apc} alt="logo" />
                     </div>
 
-                    <p>630,000 votes 70%</p>
+                    <p>
+                      {Number(APC).toLocaleString() || 0} votes{" "}
+                      {((APC / TOTAL || 0) * 100).toFixed(0)}%
+                    </p>
                   </div>
                 </div>
                 <div className="body_inner_chart">
                   <div
-                    style={{ backgroundColor: "#E4F1EC", width: "7%" }}
+                    style={{
+                      backgroundColor: "#E4F1EC",
+                      width: `${((PDP / TOTAL) * 100 + 10).toFixed(2)}%`,
+                    }}
                     className="body_inner_chart_guage"
                   ></div>
                   <div className="body_inner_chart_guage_text">
@@ -286,27 +337,27 @@ const PageLayout = () => {
                       <img src={pdp} alt="logo" />
                     </div>
 
-                    <p>630,000 votes 70%</p>
-                  </div>
-                </div>
-                <div className="body_inner_chart">
-                  <div
-                    style={{ backgroundColor: "#EFEFEF", width: "3%" }}
-                    className="body_inner_chart_guage"
-                  ></div>
-                  <div className="body_inner_chart_guage_text">
-                    <div className="body_inner_chart_guage_text_wrapper">
-                      <img src={others} alt="logo" />
-                    </div>
-
-                    <p>630,000 votes 70%</p>
+                    <p>
+                      {Number(PDP).toLocaleString() || 0} votes{" "}
+                      {((PDP / TOTAL || 0) * 100).toFixed(0)}%
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="body_inner_image">
-                <img src={voters} alt="people" />
+                <a
+                  href="https://twitter.com/thepeoplescount/media"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={voters} alt="people" />
+                </a>
               </div>
+            </div>
+            <div className="body_head">
+              <p>total Polling Units Reporting: {filter.length}</p>
+              <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
             </div>
             <div className="body_table">
               <div className="body_table_header">
@@ -336,6 +387,14 @@ const PageLayout = () => {
               </div>
               <div className="outlet">
                 <Outlet />
+              </div>
+              <div className="bottom_nav">
+                <p>
+                  *The count is continuously updated as polling unit sheets are
+                  uploaded, reviewed, and validated. Check back regularly for
+                  the latest count, keep uploading results, and encourage others
+                  to do so as well. #CountEveryVote #EveryVoteCounts.
+                </p>
               </div>
             </div>
           </div>

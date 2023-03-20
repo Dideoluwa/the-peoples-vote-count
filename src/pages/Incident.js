@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultByLga.scss";
+import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "Filter LGA:",
+  "Filter incident by LGA",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -21,7 +22,7 @@ const lagosLGAs = [
   "Lagos Mainland",
   "Mushin",
   "Ojo",
-  "Oshodi-Isolo",
+  "Oshodi/Isolo",
   "Shomolu",
   "Surulere",
 ];
@@ -29,30 +30,74 @@ const lagosLGAs = [
 function Incident() {
   const [lga, setLga] = useState("");
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState(filter);
+  const [sortedData, setSortedData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     axios
       .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_KEY}/Incidents`,
         {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
         }
       )
       .then((response) => {
-        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    if (lga === "Filter incident by LGA") {
+      setLga("");
+    }
+  }, [lga]);
+
+  useEffect(() => {
+    const resultByLga = filter?.filter((data, index) => {
+      return data?.fields?.LGA?.toLowerCase().includes(lga?.toLowerCase());
+    });
+    setLocalGovernmentResult(resultByLga);
+  }, [filter, lga]);
+
+  useEffect(() => {
+    const sorted = [...localGovernmentResult].sort((a, b) => {
+      return a.fields.Type.localeCompare(b.fields.Type);
+    });
+    setSortedData(sorted);
+  }, [localGovernmentResult]);
+
+  const totalPages = Math.ceil(sortedData.length / 10);
+
+  const startIndex = (currentPage - 1) * 10;
+  const endIndex = startIndex + 10;
+  const currentData = sortedData?.slice(startIndex, endIndex);
+
+  let disable = currentPage >= totalPages ? "disabled" : "";
+  let disable2 = currentPage <= 1 ? "disabled" : "";
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   const lgaChangeHandler = (e) => {
     setLga(e.target.value);
   };
   return (
     <div className="head">
       <div className="heading">
-        <p>Most incidence reported from:</p>
+        <p></p>
         <div className="form__inner">
           <div className="form__inner__input">
             <select value={lga} onChange={lgaChangeHandler}>
@@ -63,43 +108,72 @@ function Incident() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner">
+      <div className={styles.polling_units_table_cover}>
+        <div className={styles.polling_units_table_inner}>
+          <div>
+            <p>Type</p>
+          </div>
+
+          <div>
+            <p>Video</p>
+          </div>
           <div>
             <p>LGA</p>
           </div>
           <div>
-            <p>MOST REPORTED</p>
+            <p>Caption</p>
           </div>
           <div>
-            <p>SECOND</p>
-          </div>
-          <div>
-            <p>THIRD</p>
+            <p>PU Address</p>
           </div>
         </div>
-        {people?.map((data, index) => {
+        {currentData?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
           return (
             <div
               style={{ backgroundColor: color }}
-              className="polling_units_table_inner"
+              className={styles.polling_units_table_inner}
             >
               <div>
-                <p>{data.s}</p>
+                <p>{data.fields.Type}</p>
+              </div>
+
+              <div>
+                <a href={data.fields.Media} target="_blank" rel="noreferrer">
+                  Click Link
+                </a>
               </div>
               <div>
-                <p>{data.fileds}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
               </div>
               <div>
-                <p>{data.lga}</p>
+                <p>{data?.fields.Caption || `No caption Available`}</p>
               </div>
               <div>
-                <p>120</p>
+                <p>{data.fields["PU Address"]}</p>
               </div>
             </div>
           );
         })}
+      </div>
+      <div className={styles.button}>
+        <button
+          disabled={disable2}
+          onClick={() => handlePageClick(currentPage - 1)}
+        >
+          Previous Page
+        </button>
+
+        <p>
+          {currentPage} of {totalPages}
+        </p>
+
+        <button
+          disabled={disable}
+          onClick={() => handlePageClick(currentPage + 1)}
+        >
+          Next Page
+        </button>
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultsBypollingUnit.scss";
+import styles from "./Result.module.css";
 
 const lagosLGAs = [
-  "Filter LGA:",
+  "Filter results by LGA",
   "Agege",
   "Ajeromi-Ifelodun",
   "Alimosho",
@@ -21,7 +22,7 @@ const lagosLGAs = [
   "Lagos Mainland",
   "Mushin",
   "Ojo",
-  "Oshodi-Isolo",
+  "Oshodi/Isolo",
   "Shomolu",
   "Surulere",
 ];
@@ -29,26 +30,84 @@ const lagosLGAs = [
 function ResultByPollingUnit() {
   const [lga, setLga] = useState("");
   const [people, setPeople] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [localGovernmentResult, setLocalGovernmentResult] = useState([]);
+  const [filteredResults, setFilteredResults] = useState(localGovernmentResult);
+  const [search, setSearch] = useState("");
+  const [sortedData, setSortedData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const filterResultByLga = people?.filter((data, index) => {
+      return data?.fields?.Status === "Accepted";
+    });
+    setFilter(filterResultByLga);
+  }, [people]);
+
+  useEffect(() => {
+    if (lga === "Filter results by LGA") {
+      setLga("");
+    }
+  }, [lga]);
+
+  useEffect(() => {
+    const resultByLga = filter?.filter((data, index) => {
+      return data?.fields?.LGA?.toLowerCase().includes(lga?.toLowerCase());
+    });
+    setLocalGovernmentResult(resultByLga);
+  }, [filter, lga]);
 
   useEffect(() => {
     axios
       .get(
-        "https://api.airtable.com/v0/appgbjvsRUEJaLLcX/Results?maxRecords=3&view=Grid%20view",
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_KEY}/Results`,
         {
-          headers: { Authorization: `Bearer keyT7TJmBkPGhXhoJ` },
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_TOKEN}` },
         }
       )
       .then((response) => {
-        console.log(response.data.records);
         setPeople(response.data.records);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
   const lgaChangeHandler = (e) => {
     setLga(e.target.value);
   };
+
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    const filterResults = localGovernmentResult?.filter((data, index) =>
+      data.fields["PU Address"].toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredResults(filterResults);
+  }, [search, localGovernmentResult]);
+
+  useEffect(() => {
+    const sorted = [...filteredResults].sort((a, b) => {
+      return a.fields["PU Address"].localeCompare(b.fields["PU Address"]);
+    });
+    setSortedData(sorted);
+  }, [filteredResults]);
+
+  const totalPages = Math.ceil(sortedData.length / 10);
+
+  const startIndex = (currentPage - 1) * 10;
+  const endIndex = startIndex + 10;
+  const currentData = sortedData?.slice(startIndex, endIndex);
+
+  let disable = currentPage >= totalPages ? "disabled" : "";
+  let disable2 = currentPage <= 1 ? "disabled" : "";
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="head">
       <div className="heading">
@@ -71,7 +130,12 @@ function ResultByPollingUnit() {
               fill="#C4C4C4"
             />
           </svg>
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={searchHandler}
+            value={search}
+          />
         </div>
         <div className="form__inner">
           <div className="form__inner__input">
@@ -83,43 +147,99 @@ function ResultByPollingUnit() {
           </div>
         </div>
       </div>
-      <div className="polling_units_table_cover">
-        <div className="polling_units_table_inner">
+      <div className={styles.polling_units_table_cover}>
+        <div className={styles.polling_units_table_inner2}>
           <div>
-            <p>Candidate</p>
+            <p>POLLING UNIT</p>
           </div>
           <div>
-            <p>Party</p>
+            <p>WARD</p>
           </div>
           <div>
-            <p>Votes</p>
+            <p>LGA</p>
+          </div>
+
+          <div>
+            <p>Result</p>
+          </div>
+
+          <div>
+            <p>LP</p>
+          </div>
+
+          <div>
+            <p>APC</p>
           </div>
           <div>
-            <p>precent</p>
+            <p>PDP</p>
+          </div>
+          <div>
+            <p>TOTAL</p>
           </div>
         </div>
-        {people?.map((data, index) => {
+        {currentData?.map((data, index) => {
           const color = index % 2 === 0 ? "#FFFFFF" : "#fcfcfc";
           return (
             <div
               style={{ backgroundColor: color }}
-              className="polling_units_table_inner"
+              className={styles.polling_units_table_inner2}
             >
               <div>
-                <p>{data.s}</p>
+                <p style={{ wordBreak: "break-all" }}>
+                  {data.fields["PU Address"]}
+                </p>
               </div>
               <div>
-                <p>{data.fileds}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.Ward}</p>
               </div>
               <div>
-                <p>{data.lga}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
+              </div>
+
+              <div>
+                <a
+                  href={data.fields["Result Sheet"]}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Click Link
+                </a>
+              </div>
+
+              <div>
+                <p>{data.fields.LP}</p>
               </div>
               <div>
-                <p>120</p>
+                <p>{data.fields.APC}</p>
+              </div>
+              <div>
+                <p>{data.fields.PDP}</p>
+              </div>
+              <div>
+                <p>{data.fields["Total Valid Votes"]}</p>
               </div>
             </div>
           );
         })}
+      </div>
+      <div className={styles.button}>
+        <button
+          disabled={disable2}
+          onClick={() => handlePageClick(currentPage - 1)}
+        >
+          Previous Page
+        </button>
+
+        <p>
+          {currentPage} of {totalPages}
+        </p>
+
+        <button
+          disabled={disable}
+          onClick={() => handlePageClick(currentPage + 1)}
+        >
+          Next Page
+        </button>
       </div>
     </div>
   );
