@@ -357,6 +357,10 @@ const PageLayout = () => {
                 </a>
               </div>
             </div>
+            <div className="body_head">
+              <p>total Polling Units Reporting: {filter.length}</p>
+              <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
+            </div>
             <div className="body_table">
               <div className="body_table_header">
                 <NavLink

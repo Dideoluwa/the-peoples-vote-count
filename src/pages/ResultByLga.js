@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ResultByLga.scss";
 import styles from "./Result.module.css";
+// import sanwo from "../assets/sanwo.png";
+// import jandor from "../assets/jandor.png";
+// import grv from "../assets/grv.png";
 
 const lagosLGAs = [
   "Filter LGA:",
@@ -126,8 +129,12 @@ function ResultByLga() {
         {/* return ( */}
         <div className={styles.polling_units_table_inner}>
           <div>
+            {/* <div className={styles.imgWrapperInner}>
+              <img src={sanwo} alt="gov" />
+            </div> */}
             <p>Babajide Olusola Sanwo-Olu</p>
           </div>
+
           <div>
             <p style={{ color: "#DB6758" }}>APC</p>
           </div>
@@ -144,6 +151,9 @@ function ResultByLga() {
 
         <div className={styles.polling_units_table_inner}>
           <div>
+            {/* <div className={styles.imgWrapperInner}>
+              <img src={grv} alt="gov" />
+            </div> */}
             <p>Gbadebo Rhodes-Vivour</p>
           </div>
           <div>
@@ -162,7 +172,11 @@ function ResultByLga() {
 
         <div className={styles.polling_units_table_inner}>
           <div>
-            <p>Abdul-Azeez Olajide Adediran</p>
+            {/* <div className={styles.imgWrapperInner}>
+              <img src={jandor} alt="gov" />
+            </div> */}
+
+            <p>Adediran Azeez Olajide</p>
           </div>
           <div>
             <p style={{ color: "#4CA080" }}>PDP</p>

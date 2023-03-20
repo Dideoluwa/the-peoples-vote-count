@@ -228,7 +228,30 @@
     border-radius: 6px;
 }
 
+.imgWrapperInner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 70px;
+}
+
+
+.imgWrapperInner img {
+    width: 40%;
+    border-radius: 70px;
+}
+
 @media only screen and (max-width: 920px) {
+    /* .imgWrapperInner img {
+        display: none;
+        width: 0%;
+    } */
+
+    /* .imgWrapperInner {
+        display: none;
+    } */
+
     .polling_units_table_inner {
         width: 200%;
     }
