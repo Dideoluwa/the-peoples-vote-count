@@ -109,7 +109,7 @@ function Incident() {
         </div>
       </div>
       <div className={styles.polling_units_table_cover}>
-        <div className={styles.polling_units_table_inner}>
+        <div className={styles.polling_units_table_inner3}>
           <div>
             <p>Type</p>
           </div>
@@ -117,11 +117,13 @@ function Incident() {
           <div>
             <p>Video</p>
           </div>
-          <div>
-            <p>LGA</p>
-          </div>
+
           <div>
             <p>Caption</p>
+          </div>
+
+          <div>
+            <p>LGA</p>
           </div>
           <div>
             <p>PU Address</p>
@@ -132,7 +134,7 @@ function Incident() {
           return (
             <div
               style={{ backgroundColor: color }}
-              className={styles.polling_units_table_inner}
+              className={styles.polling_units_table_inner3}
             >
               <div>
                 <p>{data.fields.Type}</p>
@@ -144,10 +146,10 @@ function Incident() {
                 </a>
               </div>
               <div>
-                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
+                <p>{data?.fields.Caption || `No caption Available`}</p>
               </div>
               <div>
-                <p>{data?.fields.Caption || `No caption Available`}</p>
+                <p style={{ wordBreak: "break-all" }}>{data.fields.LGA}</p>
               </div>
               <div>
                 <p>{data.fields["PU Address"]}</p>
