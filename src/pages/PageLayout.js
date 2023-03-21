@@ -41,7 +41,7 @@ const PageLayout = () => {
         ((document.documentElement && document.documentElement.scrollTop) || 0);
     const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
     const button = document.querySelector(".side-button");
-    if (distanceFromBottom < 500) {
+    if (distanceFromBottom < 200) {
       button.style.opacity = 0;
     } else {
       button.style.opacity = 1;
