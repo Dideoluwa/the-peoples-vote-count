@@ -9,17 +9,43 @@ import voters from "../assets/people.png";
 import "./PageLayout.scss";
 import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
+import styles from "./Result.module.css";
 
 const PageLayout = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState([]);
   const [APC, setTotalApc] = useState(null);
+  const [overlay, setOverlay] = useState(false);
   const [PDP, setTotalPdp] = useState(null);
   const [LP, setTotalLp] = useState(null);
   const [TOTAL, setTotal] = useState(null);
   const lgaChangeHandler = () => {
     setIsOpen(null);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop =
+      window.scrollY ||
+      window.pageYOffset ||
+      document.body.scrollTop +
+        ((document.documentElement && document.documentElement.scrollTop) || 0);
+    const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+    const button = document.querySelector(".side-button");
+    if (distanceFromBottom < 500) {
+      button.style.opacity = 0;
+    } else {
+      button.style.opacity = 1;
+    }
   };
 
   // const [countdown, setCountdown] = useState({
@@ -97,6 +123,10 @@ const PageLayout = () => {
     }, 0);
     setTotal(total);
   }, [filter]);
+
+  const overlayHandler = () => {
+    setOverlay((prev) => !prev);
+  };
 
   // console.log(countdown);
 
@@ -242,6 +272,50 @@ const PageLayout = () => {
       {/* main page for election */}
       {isOpen && (
         <div className="election_table">
+          <div
+            style={{
+              backgroundColor: overlay ? "white" : "#21944b",
+              color: overlay ? "#21944b" : "white",
+            }}
+            className="side-button"
+            onClick={overlayHandler}
+          >
+            {overlay ? "Close" : "About us"}
+          </div>
+          {overlay && (
+            <div
+              className={`${styles.overlay} ${
+                overlay ? styles.open : styles.close
+              }`}
+            >
+              <div className={styles.overlay_inner}>
+                <p>
+                  The People's Count is a decentralized, non-partisan effort to
+                  count every vote and catalog every incidents in the 2023 Lagos
+                  governorship election.
+                </p>
+
+                <p>
+                  Follow us on our socials for more updates...{" "}
+                  <a
+                    href="https://instagram.com/thepeoplescount"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Instagram
+                  </a>{" "}
+                  ,{" "}
+                  <a
+                    href="https://twitter.com/thepeoplescount"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Twitter
+                  </a>
+                </p>
+              </div>
+            </div>
+          )}
           <div className="banner">
             <p>
               The information published on this website or on any other assets

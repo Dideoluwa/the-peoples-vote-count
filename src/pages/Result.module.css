@@ -6,6 +6,48 @@
     font-family: 'General sans light';
 }
 
+.overlay {
+    background-color: rgba(35, 35, 35, 0.984);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000000;
+    width: 100%;
+    transition: all 1.5s ease-in-out;
+}
+
+.overlay_inner {
+    color: rgb(203, 203, 203);
+    margin: auto 150px;
+}
+
+.overlay_inner p {
+    font-size: 26px;
+    margin-bottom: 40px;
+}
+
+.overlay_inner p a {
+    color: rgb(203, 203, 203);
+}
+
+.overlay_inner p a:hover {
+    color: #21944b;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.open {
+    transition: all 1.5s ease-in-out;
+}
+
+.close {
+    height: 0;
+    transition: all 1.5s ease-in-out;
+}
+
 .polling_units_table_inner {
     display: flex;
     align-items: center;
@@ -14,7 +56,6 @@
     background: #FCFCFC;
     border-bottom: 0.5px solid #EDEEF0;
     justify-content: space-between;
-    /* text-align: center; */
 }
 
 .polling_units_table_inner:nth-child(2),
@@ -454,5 +495,15 @@
 
     .polling_units_table_inner3 div p {
         font-size: 12px;
+    }
+
+    .overlay_inner {
+        color: rgb(203, 203, 203);
+        margin: auto 20px;
+    }
+
+    .overlay_inner p {
+        font-size: 18px;
+        margin-bottom: 40px;
     }
 }
