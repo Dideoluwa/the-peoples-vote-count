@@ -17,50 +17,6 @@
     /* text-align: center; */
 }
 
-.polling_units_table_inner3 {
-    display: flex;
-    align-items: center;
-    padding: 22px 24px;
-    gap: 12px;
-    background: #FCFCFC;
-    border-bottom: 0.5px solid #EDEEF0;
-    justify-content: space-between;
-    /* text-align: center; */
-}
-
-.polling_units_table_inner3 div p {
-    font-family: 'General Sans light';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-
-    color: #7A7A7B;
-
-}
-
-.polling_units_table_inner3 div:nth-child(1) {
-    flex: 1;
-    background-color: red;
-    max-width: 30%;
-}
-
-.polling_units_table_inner3 div:nth-child(2) {
-    flex: 1;
-    background-color: red;
-    max-width: 30%;
-}
-
-.polling_units_table_inner3 div:nth-child(3) {
-    flex: 2;
-    max-width: 20%;
-}
-
 .polling_units_table_inner:nth-child(2),
 .polling_units_table_inner:nth-child(4) {
     background-color: white;
@@ -208,6 +164,10 @@
     color: #7A7A7B;
 }
 
+.polling_units_table_inner3 div a {
+    color: #7A7A7B;
+}
+
 .button {
     display: flex;
     justify-content: space-between;
@@ -242,6 +202,77 @@
     border-radius: 70px;
 }
 
+
+.polling_units_table_inner3 {
+    display: flex;
+    align-items: center;
+    padding: 22px 24px;
+    gap: 12px;
+    background: #FCFCFC;
+    border-bottom: 0.5px solid #EDEEF0;
+    justify-content: space-between;
+    /* text-align: center; */
+}
+
+.polling_units_table_inner3:nth-child(2),
+.polling_units_table_inner3:nth-child(4) {
+    background-color: white;
+}
+
+.polling_units_table_inner3 div {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner3 div p {
+    font-family: 'General Sans light';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    color: #7A7A7B;
+
+}
+
+.polling_units_table_inner3 div:nth-child(1) {
+    flex: 1;
+    max-width: 25%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner3 div:nth-child(2),
+.polling_units_table_inner3 div:nth-child(4) {
+    flex: 1;
+    max-width: 10%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner3 div:nth-child(3) {
+    flex: 1;
+    max-width: 20%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.polling_units_table_inner3 div:nth-child(5) {
+    flex: 1;
+    max-width: 20%;
+    text-align: start;
+    display: flex;
+    justify-content: flex-start;
+}
+
 @media only screen and (max-width: 920px) {
     /* .imgWrapperInner img {
         display: none;
@@ -252,8 +283,16 @@
         display: none;
     } */
 
+    .polling_units_table_inner3 div a {
+        color: #7A7A7B;
+    }
+
+    .polling_units_table_inner3 div a {
+        color: #7A7A7B;
+    }
+
     .polling_units_table_inner {
-        width: 200%;
+        width: 150%;
     }
 
     .polling_units_table_inner div:nth-child(1) {
@@ -346,6 +385,11 @@
         font-size: 12px;
     }
 
+    .polling_units_table_inner3 div a {
+        font-size: 12px;
+    }
+
+
     .button {
         display: flex;
         justify-content: space-between;
@@ -367,6 +411,48 @@
     }
 
     .button p {
+        font-size: 12px;
+    }
+
+
+    .polling_units_table_inner3 {
+        width: 200%;
+    }
+
+    .polling_units_table_inner3 div:nth-child(1) {
+        flex: 1;
+        max-width: 35%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner3 div:nth-child(2),
+    .polling_units_table_inner3 div:nth-child(4) {
+        flex: 1;
+        max-width: 15%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner3 div:nth-child(3) {
+        flex: 1;
+        max-width: 25%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner3 div:nth-child(5) {
+        flex: 1;
+        max-width: 15%;
+        text-align: start;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .polling_units_table_inner3 div p {
         font-size: 12px;
     }
 }
