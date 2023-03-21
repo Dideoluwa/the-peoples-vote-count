@@ -41,7 +41,7 @@ const PageLayout = () => {
         ((document.documentElement && document.documentElement.scrollTop) || 0);
     const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
     const button = document.querySelector(".side-button");
-    if (distanceFromBottom < 500) {
+    if (distanceFromBottom < 200) {
       button.style.opacity = 0;
     } else {
       button.style.opacity = 1;
@@ -272,29 +272,39 @@ const PageLayout = () => {
       {/* main page for election */}
       {isOpen && (
         <div className="election_table">
-          <div
-            style={{
-              backgroundColor: overlay ? "white" : "#21944b",
-              color: overlay ? "#21944b" : "white",
-            }}
-            className="side-button"
-            onClick={overlayHandler}
-          >
-            {overlay ? "Close" : "About us"}
-          </div>
+          {!overlay && (
+            <div
+              style={{
+                backgroundColor: overlay ? "white" : "#21944b",
+                color: overlay ? "#21944b" : "white",
+              }}
+              className="side-button"
+              onClick={overlayHandler}
+            >
+              {overlay ? "Close" : "About us"}
+            </div>
+          )}
           {overlay && (
             <div
               className={`${styles.overlay} ${
                 overlay ? styles.open : styles.close
               }`}
             >
+              {" "}
+              <div
+                onClick={() => setOverlay(false)}
+                className={styles.close_handler}
+              >
+                <div className={styles.line}></div>
+                <div className={styles.line}></div>
+              </div>
               <div className={styles.overlay_inner}>
+                {" "}
                 <p>
                   The People's Count is a decentralized, non-partisan effort to
                   count every vote and catalog every incidents in the 2023 Lagos
                   governorship election.
                 </p>
-
                 <p>
                   Follow us on our socials for more updates...{" "}
                   <a
