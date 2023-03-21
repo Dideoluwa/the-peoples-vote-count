@@ -107,26 +107,34 @@
     .form__inner__input {
       display: flex;
       flex-direction: column;
-      flex: 1;
-      max-width: 100%;
+      border: 1px solid #a2a2a2;
+      padding: 2px 4px;
+      border-radius: 70px;
+      width: 100%;
+      justify-content: flex-end;
       select {
         font-size: 16px;
-        border: 1px solid #7a7a7b;
+        border: 1px solid transparent;
         border-radius: 16px;
         padding: 13px 12px;
         background-color: white;
         color: black;
-        -webkit-appearance: none;
       }
-      @media only screen and (max-width: 540px) {
+      select:focus {
+        outline: none;
+      }
+    }
+    @media only screen and (max-width: 540px) {
+      .form__inner__input {
+        padding: 8px 4px;
+        border-radius: 70px;
         select {
           font-size: 12px;
-          border: 1px solid #7a7a7b;
+          border: 1px solid transparent;
           border-radius: 16px;
           padding: 8px;
           background-color: white;
           color: black;
-          -webkit-appearance: none;
         }
       }
       select:focus {
