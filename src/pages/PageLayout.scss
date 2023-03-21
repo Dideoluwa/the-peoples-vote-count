@@ -738,6 +738,39 @@
   display: flex;
   flex-direction: column;
 
+  .side-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #21944b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100000000000000;
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+
+  .side-button:hover {
+    opacity: 0.7;
+  }
+  @media only screen and (max-width: 540px) {
+    .side-button {
+      position: fixed;
+      bottom: 20px;
+      left: 10px;
+      background-color: rgb(33, 148, 75);
+      color: white;
+      padding: 10px 15px;
+      font-size: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 100000000000000;
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+  }
   .banner {
     position: fixed;
     top: 0;
