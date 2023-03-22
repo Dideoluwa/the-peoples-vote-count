@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import logo from "../assets/logo1.png";
 import twitter from "../assets/twitter.png";
 import ig from "../assets/ig.png";
-import lp from "../assets/lp.png";
-import apc from "../assets/apc.png";
-import pdp from "../assets/pdp.png";
-import voters from "../assets/people.png";
+// import lp from "../assets/lp.png";
+// import apc from "../assets/apc.png";
+// import pdp from "../assets/pdp.png";
+// import voters from "../assets/people.png";
 import "./PageLayout.scss";
 import { NavLink, Outlet } from "react-router-dom";
 import axios from "axios";
@@ -15,10 +15,10 @@ const PageLayout = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [people, setPeople] = useState([]);
   const [filter, setFilter] = useState([]);
-  const [APC, setTotalApc] = useState(null);
+  // const [APC, setTotalApc] = useState(null);
   const [overlay, setOverlay] = useState(false);
-  const [PDP, setTotalPdp] = useState(null);
-  const [LP, setTotalLp] = useState(null);
+  // const [PDP, setTotalPdp] = useState(null);
+  // const [LP, setTotalLp] = useState(null);
   const [TOTAL, setTotal] = useState(null);
   const lgaChangeHandler = () => {
     setIsOpen(null);
@@ -41,7 +41,7 @@ const PageLayout = () => {
         ((document.documentElement && document.documentElement.scrollTop) || 0);
     const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
     const button = document.querySelector(".side-button");
-    if (distanceFromBottom < 200) {
+    if (distanceFromBottom < 50) {
       button.style.opacity = 0;
     } else {
       button.style.opacity = 1;
@@ -103,20 +103,20 @@ const PageLayout = () => {
   }, [people]);
 
   useEffect(() => {
-    const totalApc = filter?.reduce((index, data) => {
-      return index + data?.fields?.APC;
-    }, 0);
-    setTotalApc(totalApc);
+    // const totalApc = filter?.reduce((index, data) => {
+    //   return index + data?.fields?.APC;
+    // }, 0);
+    // setTotalApc(totalApc);
 
-    const totalPdp = filter?.reduce((index, data) => {
-      return index + data?.fields?.PDP;
-    }, 0);
-    setTotalPdp(totalPdp);
+    // const totalPdp = filter?.reduce((index, data) => {
+    //   return index + data?.fields?.PDP;
+    // }, 0);
+    // setTotalPdp(totalPdp);
 
-    const totalLp = filter?.reduce((index, data) => {
-      return index + data?.fields?.LP;
-    }, 0);
-    setTotalLp(totalLp);
+    // const totalLp = filter?.reduce((index, data) => {
+    //   return index + data?.fields?.LP;
+    // }, 0);
+    // setTotalLp(totalLp);
 
     const total = filter?.reduce((index, data) => {
       return index + data?.fields["Total Valid Votes"];
@@ -368,7 +368,7 @@ const PageLayout = () => {
               <h2>2023 Lagos Governorship Election*</h2>
             </div>
             <div className="body_inner">
-              <div>
+              {/* <div>
                 {" "}
                 <div className="body_inner_chart">
                   <div
@@ -427,9 +427,9 @@ const PageLayout = () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="body_inner_image">
+              {/* <div className="body_inner_image">
                 <a
                   href="https://twitter.com/thepeoplescount/media"
                   target="_blank"
@@ -437,11 +437,7 @@ const PageLayout = () => {
                 >
                   <img src={voters} alt="people" />
                 </a>
-              </div>
-            </div>
-            <div className="body_head">
-              <p>total Polling Units Reporting: {filter.length}</p>
-              <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
+              </div> */}
             </div>
             <div className="body_table">
               <div className="body_table_header">
@@ -479,6 +475,10 @@ const PageLayout = () => {
                   the latest count, keep uploading results, and encourage others
                   to do so as well. #CountEveryVote #EveryVoteCounts.
                 </p>
+              </div>
+              <div className="body_head">
+                <p>total Polling Units Reporting: {filter.length}</p>
+                <p>total Valid votes: {Number(TOTAL).toLocaleString() || 0}</p>
               </div>
             </div>
           </div>
